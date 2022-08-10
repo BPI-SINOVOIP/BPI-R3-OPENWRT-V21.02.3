@@ -1,0 +1,18 @@
+diff -urN a/package/system/fstools/patches/0101-jffs2-mount-on-mtk-flash-workaround.patch b/package/system/fstools/patches/0101-jffs2-mount-on-mtk-flash-workaround.patch
+--- a/package/system/fstools/patches/0101-jffs2-mount-on-mtk-flash-workaround.patch	1970-01-01 08:00:00.000000000 +0800
++++ b/package/system/fstools/patches/0101-jffs2-mount-on-mtk-flash-workaround.patch	2020-07-30 18:16:13.178070668 +0800
+@@ -0,0 +1,14 @@
++Index: fstools-2016-12-04-84b530a7/libfstools/mtd.c
++===================================================================
++--- fstools-2016-12-04-84b530a7.orig/libfstools/mtd.c	2017-08-29 15:00:46.824333000 +0800
+++++ fstools-2016-12-04-84b530a7/libfstools/mtd.c	2017-08-29 15:02:52.848520000 +0800
++@@ -218,6 +218,9 @@
++ 	if (v->type == UBIVOLUME && deadc0de == 0xffffffff) {
++ 		return FS_JFFS2;
++ 	}
+++	if (v->type == NANDFLASH && deadc0de == 0xffffffff) {
+++		return FS_JFFS2;
+++	}
++ 
++ 	return FS_NONE;
++ }

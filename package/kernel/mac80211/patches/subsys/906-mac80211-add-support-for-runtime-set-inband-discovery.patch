@@ -1,0 +1,150 @@
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -1158,6 +1158,7 @@ struct cfg80211_fils_discovery {
+ 	u32 max_interval;
+ 	size_t tmpl_len;
+ 	const u8 *tmpl;
++	u8 disable;
+ };
+ 
+ /**
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -505,6 +505,7 @@ struct ieee80211_ftm_responder_params {
+ struct ieee80211_fils_discovery {
+ 	u32 min_interval;
+ 	u32 max_interval;
++	u8 disable;
+ };
+ 
+ /**
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -7236,6 +7236,7 @@ enum nl80211_fils_discovery_attributes {
+ 	NL80211_FILS_DISCOVERY_ATTR_INT_MIN,
+ 	NL80211_FILS_DISCOVERY_ATTR_INT_MAX,
+ 	NL80211_FILS_DISCOVERY_ATTR_TMPL,
++	NL80211_UNSOL_BCAST_PROBE_RESP_ATTR_INTE,
+ 
+ 	/* keep last */
+ 	__NL80211_FILS_DISCOVERY_ATTR_LAST,
+diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
+--- a/net/mac80211/cfg.c
++++ b/net/mac80211/cfg.c
+@@ -906,6 +906,7 @@ static int ieee80211_set_fils_discovery(
+ 	fd = &sdata->vif.bss_conf.fils_discovery;
+ 	fd->min_interval = params->min_interval;
+ 	fd->max_interval = params->max_interval;
++	fd->disable = params->disable;
+ 
+ 	old = sdata_dereference(sdata->u.ap.fils_discovery, sdata);
+ 	new = kzalloc(sizeof(*new) + params->tmpl_len, GFP_KERNEL);
+@@ -1316,6 +1317,8 @@ static int ieee80211_change_beacon(struc
+ {
+ 	struct ieee80211_sub_if_data *sdata;
+ 	struct beacon_data *old;
++	struct cfg80211_ap_settings *ap_params;
++	u32 changed;
+ 	int err;
+ 
+ 	sdata = IEEE80211_DEV_TO_SUB_IF(dev);
+@@ -1334,7 +1337,26 @@ static int ieee80211_change_beacon(struc
+ 	err = ieee80211_assign_beacon(sdata, params, NULL, NULL);
+ 	if (err < 0)
+ 		return err;
+-	ieee80211_bss_info_change_notify(sdata, err);
++
++	changed = err;
++	ap_params = container_of(params, struct cfg80211_ap_settings, beacon);
++
++	if(ap_params->unsol_bcast_probe_resp.interval) {
++		err = ieee80211_set_unsol_bcast_probe_resp(sdata,
++							   &ap_params->unsol_bcast_probe_resp);
++		if (err < 0)
++			return err;
++		changed |= BSS_CHANGED_UNSOL_BCAST_PROBE_RESP;
++	} else {
++		err = ieee80211_set_fils_discovery(sdata,
++						   &ap_params->fils_discovery);
++		if (err < 0)
++			return err;
++		changed |= BSS_CHANGED_FILS_DISCOVERY;
++
++	}
++
++	ieee80211_bss_info_change_notify(sdata, changed);
+ 	return 0;
+ }
+ 
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -421,6 +421,7 @@ nl80211_fils_discovery_policy[NL80211_FI
+ 	[NL80211_FILS_DISCOVERY_ATTR_TMPL] = { .type = NLA_BINARY,
+ 					       .len = IEEE80211_MAX_DATA_LEN },
+ #endif
++	[NL80211_UNSOL_BCAST_PROBE_RESP_ATTR_INTE] = NLA_POLICY_MAX(NLA_U32, 20),
+ };
+ 
+ static const struct nla_policy
+@@ -5349,6 +5350,8 @@ static int nl80211_parse_fils_discovery(
+ 	fd->tmpl = nla_data(tb[NL80211_FILS_DISCOVERY_ATTR_TMPL]);
+ 	fd->min_interval = nla_get_u32(tb[NL80211_FILS_DISCOVERY_ATTR_INT_MIN]);
+ 	fd->max_interval = nla_get_u32(tb[NL80211_FILS_DISCOVERY_ATTR_INT_MAX]);
++	fd->disable = !(fd->max_interval ||
++			nla_get_u32(tb[NL80211_UNSOL_BCAST_PROBE_RESP_ATTR_INTE]));
+ 
+ 	return 0;
+ }
+@@ -5754,7 +5757,8 @@ static int nl80211_set_beacon(struct sk_
+ 	struct cfg80211_registered_device *rdev = info->user_ptr[0];
+ 	struct net_device *dev = info->user_ptr[1];
+ 	struct wireless_dev *wdev = dev->ieee80211_ptr;
+-	struct cfg80211_beacon_data params;
++	struct cfg80211_ap_settings ap_params;
++	struct cfg80211_beacon_data *params;
+ 	int err;
+ 
+ 	if (dev->ieee80211_ptr->iftype != NL80211_IFTYPE_AP &&
+@@ -5767,16 +5771,35 @@ static int nl80211_set_beacon(struct sk_
+ 	if (!wdev->beacon_interval)
+ 		return -EINVAL;
+ 
+-	err = nl80211_parse_beacon(rdev, info->attrs, &params);
++	memset(&ap_params, 0, sizeof(ap_params));
++	params = &ap_params.beacon;
++
++	err = nl80211_parse_beacon(rdev, info->attrs, params);
+ 	if (err)
+ 		goto out;
+ 
++	if (info->attrs[NL80211_ATTR_FILS_DISCOVERY]) {
++		err = nl80211_parse_fils_discovery(rdev,
++			   info->attrs[NL80211_ATTR_FILS_DISCOVERY],
++			   &ap_params);
++		if (err)
++			goto out;
++	}
++
++	if (info->attrs[NL80211_ATTR_UNSOL_BCAST_PROBE_RESP]) {
++		err = nl80211_parse_unsol_bcast_probe_resp(rdev,
++			   info->attrs[NL80211_ATTR_UNSOL_BCAST_PROBE_RESP],
++			   &ap_params);
++		if (err)
++			goto out;
++	}
++
+ 	wdev_lock(wdev);
+-	err = rdev_change_beacon(rdev, dev, &params);
++	err = rdev_change_beacon(rdev, dev, params);
+ 	wdev_unlock(wdev);
+ 
+ out:
+-	kfree(params.mbssid_ies);
++	kfree(params->mbssid_ies);
+ 	return err;
+ }
+ 

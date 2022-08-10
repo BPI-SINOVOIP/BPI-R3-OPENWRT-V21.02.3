@@ -1,0 +1,22 @@
+Source-Makefile: feeds/kenzo/UnblockNeteaseMusic/Makefile
+
+Package: UnblockNeteaseMusic
+Version: 0.27.0-rc.6-2022-05-20-83e3467dc6b8e9bf1cc0feaabae834972aad3a64-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +node
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: multimedia
+Category: Multimedia
+Repository: base
+Title: Revive Netease Cloud Music (NodeJS)
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: UnblockNeteaseMusic-0.27.0-rc.6-2022-05-20-83e3467dc6b8e9bf1cc0feaabae834972aad3a64.tar.xz
+License: LGPL-3.0-only
+Type: ipkg
+Description: Revive Netease Cloud Music (NodeJS)
+https://github.com/nondanee/UnblockNeteaseMusic
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+

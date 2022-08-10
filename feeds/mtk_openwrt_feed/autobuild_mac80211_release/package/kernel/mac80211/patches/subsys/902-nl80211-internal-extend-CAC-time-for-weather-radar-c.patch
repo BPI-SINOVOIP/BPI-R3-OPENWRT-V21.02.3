@@ -1,0 +1,31 @@
+From 686d2b968461c441f18ae18eec36980728706b87 Mon Sep 17 00:00:00 2001
+From: Shayne Chen <shayne.chen@mediatek.com>
+Date: Tue, 29 Mar 2022 16:06:30 +0800
+Subject: [PATCH] nl80211: internal: extend CAC time for weather radar channels
+
+Signed-off-by: Shayne Chen <shayne.chen@mediatek.com>
+---
+ net/wireless/nl80211.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index f54cb1a..07f8d3a 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -9336,6 +9336,13 @@ static int nl80211_start_radar_detection(struct sk_buff *skb,
+ 	if (WARN_ON(!cac_time_ms))
+ 		cac_time_ms = IEEE80211_DFS_MIN_CAC_TIME_MS;
+ 
++	if ((dfs_region == NL80211_DFS_ETSI) &&
++	    (((chandef.width == NL80211_CHAN_WIDTH_160) &&
++	     (chandef.center_freq2 >= 5580 && chandef.center_freq2 <= 5640)) ||
++	    (chandef.center_freq1 >= 5580 && chandef.center_freq1 <= 5640)))
++		cac_time_ms = 600000;
++	pr_info("%s: region = %u, cetner freq1 = %u, center freq2 = %u, cac time ms = %u\n", __func__, dfs_region, chandef.center_freq1, chandef.center_freq2, cac_time_ms);
++
+ 	err = rdev_start_radar_detection(rdev, dev, &chandef, cac_time_ms);
+ 	if (!err) {
+ 		wdev->chandef = chandef;
+-- 
+2.25.1
+

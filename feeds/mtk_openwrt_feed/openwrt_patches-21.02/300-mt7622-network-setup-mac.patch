@@ -1,0 +1,30 @@
+diff --git a/target/linux/mediatek/mt7622/base-files/etc/board.d/02_network b/target/linux/mediatek/mt7622/base-files/etc/board.d/02_network
+index 3a409c8..4b19c0d 100755
+--- a/target/linux/mediatek/mt7622/base-files/etc/board.d/02_network
++++ b/target/linux/mediatek/mt7622/base-files/etc/board.d/02_network
+@@ -29,9 +29,25 @@ mediatek_setup_interfaces()
+ mediatek_setup_macs()
+ {
+ 	local board="$1"
++	local part_name="Factory"
++	local lan_mac=""
++	local wan_mac=""
++	local lan_mac_offset=""
++	local wan_mac_offset=""
+ 
+ 	case $board in
++	*)
++		#512k - 12 byte
++		lan_mac_offset="0x7FFF4"
++		wan_mac_offset="0x7FFFA"
++		;;
+ 	esac
++
++	lan_mac=$(mtd_get_mac_binary $part_name $lan_mac_offset)
++	wan_mac=$(mtd_get_mac_binary $part_name $wan_mac_offset)
++
++	[ -n "$lan_mac" ] && ucidef_set_interface_macaddr "lan" "$lan_mac"
++	[ -n "$wan_mac" ] && ucidef_set_interface_macaddr "wan" "$wan_mac"
+ }
+ 
+ board_config_update

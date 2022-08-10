@@ -1,0 +1,76 @@
+--- a/scripts/mkits.sh
++++ b/scripts/mkits.sh
+@@ -17,7 +17,7 @@
+ usage() {
+ 	printf "Usage: %s -A arch -C comp -a addr -e entry" "$(basename "$0")"
+ 	printf " -v version -k kernel [-D name -n address -d dtb] -o its_file"
+-	printf " [-s script] [-S key_name_hint] [-r ar_ver]"
++	printf " [-s script] [-S key_name_hint] [-r ar_ver] [-R rootfs]"
+ 
+ 	printf "\n\t-A ==> set architecture to 'arch'"
+ 	printf "\n\t-C ==> set compression type 'comp'"
+@@ -32,13 +32,14 @@ usage() {
+ 	printf "\n\t-o ==> create output file 'its_file'"
+ 	printf "\n\t-s ==> include u-boot script 'script'"
+ 	printf "\n\t-S ==> add signature at configurations and assign its key_name_hint by 'key_name_hint'"
+-	printf "\n\t-r ==> set anti-rollback version to 'fw_ar_ver' (dec)\n"
++	printf "\n\t-r ==> set anti-rollback version to 'fw_ar_ver' (dec)"
++	printf "\n\t-R ==> specify rootfs file for embedding hash\n"
+ 	exit 1
+ }
+ 
+ FDTNUM=1
+ 
+-while getopts ":A:a:c:C:D:d:e:k:n:o:v:s:S:r:" OPTION
++while getopts ":A:a:c:C:D:d:e:k:n:o:v:s:S:r:R:" OPTION
+ do
+ 	case $OPTION in
+ 		A ) ARCH=$OPTARG;;
+@@ -55,6 +56,7 @@ do
+ 		s ) UBOOT_SCRIPT=$OPTARG;;
+ 		S ) KEY_NAME_HINT=$OPTARG;;
+ 		r ) AR_VER=$OPTARG;;
++		R ) ROOTFS_FILE=$OPTARG;;
+ 		* ) echo "Invalid option passed to '$0' (options:$*)"
+ 		usage;;
+ 	esac
+@@ -89,6 +91,30 @@ if [ -n "${DTB}" ]; then
+ 	FDT_PROP="fdt = \"fdt-$FDTNUM\";"
+ fi
+ 
++# Conditionally create rootfs hash information
++if [ -f "${ROOTFS_FILE}" ]; then
++	ROOTFS_SIZE=$(stat -c %s ${ROOTFS_FILE})
++
++	ROOTFS_SHA1=$(sha1sum ${ROOTFS_FILE} | awk '{print "<0x"substr($0,1,8) " 0x"substr($0,9,8) " 0x"substr($0,17,8) " 0x"substr($0,25,8) " 0x"substr($0,33,8) ">"}')
++	ROOTFS_CRC32=$(crc32sum ${ROOTFS_FILE})
++
++	ROOTFS="
++	rootfs {
++		size = <${ROOTFS_SIZE}>;
++
++		hash-1 {
++			value = <0x${ROOTFS_CRC32}>;
++			algo = \"crc32\";
++		};
++
++		hash-2 {
++			value = ${ROOTFS_SHA1};
++			algo = \"sha1\";
++		};
++	};
++"
++fi
++
+ # Conditionally create script information
+ if [ -n "${UBOOT_SCRIPT}" ]; then
+ 	SCRIPT="\
+@@ -167,6 +193,8 @@ ${FDT_NODE}
+ ${SCRIPT}
+ 	};
+ 
++${ROOTFS}
++
+ 	configurations {
+ 		default = \"${CONFIG}\";
+ 		${CONFIG} {

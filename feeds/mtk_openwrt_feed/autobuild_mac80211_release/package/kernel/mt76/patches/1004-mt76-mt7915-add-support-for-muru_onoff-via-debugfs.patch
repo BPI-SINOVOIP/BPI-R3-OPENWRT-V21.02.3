@@ -1,0 +1,119 @@
+From 7bcfae1d261805e54b6e27091dffd4706c4dc046 Mon Sep 17 00:00:00 2001
+From: MeiChia Chiu <meichia.chiu@mediatek.com>
+Date: Wed, 22 Jun 2022 10:45:53 +0800
+Subject: [PATCH 1004/1008] mt76: mt7915: add support for muru_onoff via
+ debugfs
+
+---
+ mt7915/init.c        |  1 +
+ mt7915/mcu.c         |  9 +++++++--
+ mt7915/mcu.h         |  6 ++++++
+ mt7915/mtk_debugfs.c | 33 +++++++++++++++++++++++++++++++++
+ 4 files changed, 47 insertions(+), 2 deletions(-)
+
+diff --git a/mt7915/init.c b/mt7915/init.c
+index fa9568c..6e2a1c1 100644
+--- a/mt7915/init.c
++++ b/mt7915/init.c
+@@ -577,6 +577,7 @@ static void mt7915_init_work(struct work_struct *work)
+ 	mt7915_init_txpower(dev, &dev->mphy.sband_5g.sband);
+ 	mt7915_init_txpower(dev, &dev->mphy.sband_6g.sband);
+ 	mt7915_txbf_init(dev);
++	dev->dbg.muru_onoff = OFDMA_DL | MUMIMO_UL | MUMIMO_DL;
+ }
+ 
+ void mt7915_wfsys_reset(struct mt7915_dev *dev)
+diff --git a/mt7915/mcu.c b/mt7915/mcu.c
+index 0941bf3..34cf3e6 100644
+--- a/mt7915/mcu.c
++++ b/mt7915/mcu.c
+@@ -856,13 +856,18 @@ mt7915_mcu_sta_muru_tlv(struct mt7915_dev *dev, struct sk_buff *skb,
+ 
+ 	muru = (struct sta_rec_muru *)tlv;
+ 
+-	muru->cfg.mimo_dl_en = mvif->cap.he_mu_ebfer ||
++	muru->cfg.mimo_dl_en = (mvif->cap.he_mu_ebfer ||
+ 			       mvif->cap.vht_mu_ebfer ||
+-			       mvif->cap.vht_mu_ebfee;
++			       mvif->cap.vht_mu_ebfee) &&
++				   !!(dev->dbg.muru_onoff & MUMIMO_DL);
+ 	if (!is_mt7915(&dev->mt76))
+ 		muru->cfg.mimo_ul_en = true;
+ 	muru->cfg.ofdma_dl_en = true;
+ 
++	muru->cfg.mimo_ul_en = !!(dev->dbg.muru_onoff & MUMIMO_UL);
++	muru->cfg.ofdma_dl_en = !!(dev->dbg.muru_onoff & OFDMA_DL);
++	muru->cfg.ofdma_ul_en = !!(dev->dbg.muru_onoff & OFDMA_UL);
++
+ 	if (sta->vht_cap.vht_supported)
+ 		muru->mimo_dl.vht_mu_bfee =
+ 			!!(sta->vht_cap.cap & IEEE80211_VHT_CAP_MU_BEAMFORMEE_CAPABLE);
+diff --git a/mt7915/mcu.h b/mt7915/mcu.h
+index ec8887b..07c1f2b 100644
+--- a/mt7915/mcu.h
++++ b/mt7915/mcu.h
+@@ -552,4 +552,10 @@ struct csi_data {
+ };
+ #endif
+ 
++/* MURU */
++#define OFDMA_DL                       BIT(0)
++#define OFDMA_UL                       BIT(1)
++#define MUMIMO_DL                      BIT(2)
++#define MUMIMO_UL                      BIT(3)
++
+ #endif
+diff --git a/mt7915/mtk_debugfs.c b/mt7915/mtk_debugfs.c
+index f18c8b6..e239df9 100644
+--- a/mt7915/mtk_debugfs.c
++++ b/mt7915/mtk_debugfs.c
+@@ -2480,6 +2480,38 @@ static int mt7915_token_txd_read(struct seq_file *s, void *data)
+ 	return 0;
+ }
+ 
++static int mt7915_muru_onoff_get(void *data, u64 *val)
++{
++       struct mt7915_dev *dev = data;
++
++       *val = dev->dbg.muru_onoff;
++
++       printk("mumimo ul:%d, mumimo dl:%d, ofdma ul:%d, ofdma dl:%d\n",
++               !!(dev->dbg.muru_onoff & MUMIMO_UL),
++               !!(dev->dbg.muru_onoff & MUMIMO_DL),
++               !!(dev->dbg.muru_onoff & OFDMA_UL),
++               !!(dev->dbg.muru_onoff & OFDMA_DL));
++
++       return 0;
++}
++
++static int mt7915_muru_onoff_set(void *data, u64 val)
++{
++       struct mt7915_dev *dev = data;
++
++       if (val > 15) {
++               printk("Wrong value! The value is between 0 ~ 15.\n");
++               goto exit;
++       }
++
++       dev->dbg.muru_onoff = val;
++exit:
++       return 0;
++}
++
++DEFINE_DEBUGFS_ATTRIBUTE(fops_muru_onoff, mt7915_muru_onoff_get,
++                       mt7915_muru_onoff_set, "%llx\n");
++
+ static int mt7915_amsduinfo_read(struct seq_file *s, void *data)
+ {
+ 	struct mt7915_dev *dev = dev_get_drvdata(s->private);
+@@ -2857,6 +2889,7 @@ int mt7915_mtk_init_debugfs(struct mt7915_phy *phy, struct dentry *dir)
+ 
+ 	mt7915_mcu_fw_log_2_host(dev, MCU_FW_LOG_WM, 0);
+ 
++	debugfs_create_file("muru_onoff", 0600, dir, dev, &fops_muru_onoff);
+ 	debugfs_create_file("fw_debug_module", 0600, dir, dev,
+ 			    &fops_fw_debug_module);
+ 	debugfs_create_file("fw_debug_level", 0600, dir, dev,
+-- 
+2.18.0
+

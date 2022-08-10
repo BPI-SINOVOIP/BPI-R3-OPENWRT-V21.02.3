@@ -1,0 +1,44 @@
+--- a/package/base-files/files/etc/hotplug.d/net/00-sysctl	2022-02-09 17:30:24.308209645 +0800
++++ b/package/base-files/files/etc/hotplug.d/net/00-sysctl	2022-02-09 21:01:24.392931550 +0800
+@@ -1,4 +1,29 @@
+ #!/bin/sh
++# $1: module name
++# return value
++#    1: if the module named $1 is built-in or inserted.
++#    0: if the module exists but has not been inserted.
++#   -1: if the module does not exist.
++module_exist()
++{
++	mpath="/lib/modules/`uname -r`"
++	retval=-1
++	mod_in_lib=`find $mpath -name "$1".ko > /dev/null 2>&1`
++	#echo "find $mpath -name "$1".ko" > /dev/console
++	if [ ! -z $mod_in_lib ]; then
++		retval=0
++	fi
++	# TODO find out a way in OpenWRT
++	mod_builtin=`grep $1 $mpath/modules.builtin 2>/dev/null`
++	if [ ! -z "$mod_builtin" ]; then
++		retval=1
++	fi
++	mod_inserted=`lsmod | grep $1 2>/dev/null`
++	if [ ! -z "$mod_inserted" ]; then
++		retval=1
++	fi
++	echo $retval
++}
+ 
+ if [ "$ACTION" = add ]; then
+ 	for CONF in /etc/sysctl.d/*.conf /etc/sysctl.conf; do
+@@ -6,4 +31,11 @@
+ 		sed -ne "/^[[:space:]]*net\..*\.$DEVICENAME\./p" "$CONF" | \
+ 			sysctl -e -p - | logger -t sysctl
+ 	done
++	is_mac80211=$(module_exist "mt76")
++
++	if [ "$is_mac80211" = "1" ]; then
++		[ -f /sbin/smp-mt76.sh ] && /sbin/smp-mt76.sh
++	else
++		[ -f /sbin/smp.sh ] && /sbin/smp.sh
++	fi
+ fi

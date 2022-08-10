@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/lua-maxminddb/Makefile
+
+Package: lua-maxminddb
+Submenu: Lua
+Version: 0.2-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +lua +libmaxminddb
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: libmaxminddb bindings for lua
+Maintainer: fabled
+Source: lua-maxminddb-0.2.tar.xz
+License: MIT
+Type: ipkg
+Description: libmaxminddb bindings for lua
+https://github.com/jerrykuku/lua-maxminddb
+fabled
+@@
+
+

@@ -1,0 +1,22 @@
+Source-Makefile: feeds/kenzo/ddnsto/Makefile
+
+Package: ddnsto
+Submenu: Web Servers/Proxies
+Version: 3.0.0--1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: DDNS.to - the reverse proxy
+Maintainer: 
+Source: ddnsto-binary-3.0.0.tar.gz
+Type: ipkg
+Description:   DDNS.to is a reverse proxy
+https://www.ddnsto.com/
+
+@@
+
+

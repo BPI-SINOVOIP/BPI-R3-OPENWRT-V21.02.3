@@ -1,0 +1,12 @@
+diff -urN a/drivers/mtd/parsers/cmdlinepart.c b/drivers/mtd/parsers/cmdlinepart.c
+--- a/drivers/mtd/parsers/cmdlinepart.c	2021-04-10 19:34:32.000000000 +0800
++++ b/drivers/mtd/parsers/cmdlinepart.c	2021-04-17 09:23:06.000000000 +0800
+@@ -343,7 +343,7 @@
+ 	 * If master->name is not set, stop at first partition definition.
+ 	 */
+ 	for (part = partitions; part; part = part->next) {
+-		if ((!mtd_id) || (!strcmp(part->mtd_id, mtd_id)))
++		if ((!mtd_id) || (strstr(mtd_id, part->mtd_id)))
+ 			break;
+ 	}
+ 

@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/luci-app-ikoolproxy/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-ikoolproxy
+Submenu: 3. Applications
+Version: 3.8.5
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +koolproxy +openssl-util +ipset +dnsmasq-full +@BUSYBOX_CONFIG_DIFF +iptables-mod-nat-extra +wget
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI support for ikoolproxy
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: LuCI support for ikoolproxy
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+

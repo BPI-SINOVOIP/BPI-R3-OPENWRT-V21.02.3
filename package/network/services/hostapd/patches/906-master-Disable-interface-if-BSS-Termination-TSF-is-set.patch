@@ -1,0 +1,47 @@
+From dcedb231bc62949d458792530a14ceddfee20e96 Mon Sep 17 00:00:00 2001
+From: "howard.hsu" <howard-yh.hsu@mediatek.com>
+Date: Wed, 19 Jan 2022 21:03:38 +0800
+Subject: [PATCH 5/9] Disable interface if BSS Termination TSF is set
+
+---
+ src/ap/wnm_ap.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/src/ap/wnm_ap.c b/src/ap/wnm_ap.c
+index b55b3f3..6eac3ac 100644
+--- a/src/ap/wnm_ap.c
++++ b/src/ap/wnm_ap.c
+@@ -767,6 +767,22 @@ static void set_disassoc_timer(struct hostapd_data *hapd, struct sta_info *sta,
+ }
+ 
+ 
++void bss_termination_disable_iface(void *eloop_ctx, void *timeout_ctx)
++{
++	struct hostapd_data *hapd = eloop_ctx;
++	hostapd_disable_iface(hapd->iface);
++}
++
++
++static void set_disable_iface_timer(struct hostapd_data *hapd, struct sta_info *sta,
++			       int disable_iface_timer)
++{
++	wpa_printf(MSG_DEBUG, "Disable interface timer set to %d secs", disable_iface_timer);
++	eloop_register_timeout(disable_iface_timer, 0,
++			       bss_termination_disable_iface, hapd, NULL);
++}
++
++
+ int wnm_send_ess_disassoc_imminent(struct hostapd_data *hapd,
+ 				   struct sta_info *sta, const char *url,
+ 				   int disassoc_timer)
+@@ -856,6 +872,7 @@ int wnm_send_bss_tm_req(struct hostapd_data *hapd, struct sta_info *sta,
+ 	    bss_term_dur) {
+ 		os_memcpy(pos, bss_term_dur, 12);
+ 		pos += 12;
++		set_disable_iface_timer(hapd, sta, hapd->conf->bss_termination_tsf);
+ 	}
+ 
+ 	if (url) {
+-- 
+2.18.0
+

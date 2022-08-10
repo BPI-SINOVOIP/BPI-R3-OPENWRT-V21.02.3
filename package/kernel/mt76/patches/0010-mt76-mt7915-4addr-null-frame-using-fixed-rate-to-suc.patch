@@ -1,0 +1,27 @@
+From 924bfa3aeb7330cbf5c14c9a0ddebb9567e5f77c Mon Sep 17 00:00:00 2001
+From: "lian.chen" <lian.chen@mediatek.com>
+Date: Wed, 22 Jun 2022 10:31:55 +0800
+Subject: [PATCH 10/12] mt76: mt7915: 4addr null frame using fixed rate to
+ success WDS
+
+---
+ mt76_connac_mac.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/mt76_connac_mac.c b/mt76_connac_mac.c
+index af2b33d..27eaf22 100644
+--- a/mt76_connac_mac.c
++++ b/mt76_connac_mac.c
+@@ -393,7 +393,8 @@ mt76_connac2_mac_write_txwi_80211(struct mt76_dev *dev, __le32 *txwi,
+ 	}
+ 
+ 	if (!ieee80211_is_data(fc) || multicast ||
+-	    info->flags & IEEE80211_TX_CTL_USE_MINRATE)
++	    info->flags & IEEE80211_TX_CTL_USE_MINRATE ||
++	    (ieee80211_is_nullfunc(fc) && ieee80211_has_a4(fc)))
+ 		val |= MT_TXD2_FIX_RATE;
+ 
+ 	txwi[2] |= cpu_to_le32(val);
+-- 
+2.18.0
+

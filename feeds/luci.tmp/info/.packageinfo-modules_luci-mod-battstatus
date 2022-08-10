@@ -1,0 +1,24 @@
+Source-Makefile: feeds/luci/modules/luci-mod-battstatus/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-mod-battstatus
+Submenu: 2. Modules
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-base +libiwinfo-lua +rpcd-mod-iwinfo +libi2c +i2c-tools
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Battery Status
+Maintainer: OpenWrt LuCI community
+Source: 
+License: Apache-2.0
+Type: ipkg
+Description:    Provides a battery charge indicator in LuCI. Currently only supports the HooToo HT-TM05 travel router.
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+

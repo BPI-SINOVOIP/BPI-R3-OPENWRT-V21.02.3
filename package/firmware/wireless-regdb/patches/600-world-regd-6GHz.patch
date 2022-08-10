@@ -1,0 +1,16 @@
+diff --git a/db.txt b/db.txt
+index 4f36062..f7c0082 100644
+--- a/db.txt
++++ b/db.txt
+@@ -26,6 +26,8 @@ country 00:
+ 	(5490 - 5730 @ 160), (20), NO-IR, DFS
+ 	# Channel 149 - 165
+ 	(5735 - 5835 @ 80), (20), NO-IR
++	# WiFi 6E
++	(5925 - 7125 @ 320), (12), NO-OUTDOOR
+ 	# IEEE 802.11ad (60GHz), channels 1..3
+ 	(57240 - 63720 @ 2160), (0)
+ 
+-- 
+2.18.0
+

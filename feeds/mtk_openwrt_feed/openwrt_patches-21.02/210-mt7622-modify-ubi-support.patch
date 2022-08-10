@@ -1,0 +1,43 @@
+--- a/target/linux/mediatek/image/mt7622.mk
++++ b/target/linux/mediatek/image/mt7622.mk
+@@ -46,15 +46,15 @@ define Device/mediatek_mt7622-ubi
+   DEVICE_MODEL := MTK7622 AP (UBI)
+   DEVICE_DTS := mt7622-rfb1-ubi
+   DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
++  SUPPORTED_DEVICES := mediatek,mt7622,ubi
+   UBINIZE_OPTS := -E 5
+   BLOCKSIZE := 128k
+   PAGESIZE := 2048
+-  KERNEL_SIZE := 4194304
+-  IMAGE_SIZE := 32768k
++  IMAGE_SIZE := 36864k
++  KERNEL_IN_UBI := 1
+   IMAGES += factory.bin
+-  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+-                check-size $$$$(IMAGE_SIZE)
+-  IMAGE/sysupgrade.bin := sysupgrade-tar
++  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
++  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+   DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2 kmod-usb3 kmod-ata-ahci-mtk
+ endef
+ TARGET_DEVICES += mediatek_mt7622-ubi
+--- a/target/linux/mediatek/mt7622/base-files/lib/upgrade/platform.sh
++++ b/target/linux/mediatek/mt7622/base-files/lib/upgrade/platform.sh
+@@ -25,6 +25,17 @@ platform_check_image() {
+ 	[ "$#" -gt 1 ] && return 1
+ 
+ 	case "$board" in
++	mediatek,mt7622,ubi)
++		# tar magic `ustar`
++		magic="$(dd if="$1" bs=1 skip=257 count=5 2>/dev/null)"
++
++		[ "$magic" != "ustar" ] && {
++			echo "Invalid image type."
++			return 1
++		}
++
++		return 0
++		;;
+ 	*)
+ 		[ "$magic" != "d00dfeed" ] && {
+ 			echo "Invalid image type."

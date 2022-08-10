@@ -1,0 +1,61 @@
+Source-Makefile: feeds/kenzo/luci-app-ddnsto/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-ddnsto
+Submenu: 3. Applications
+Version: 3.0.0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +ddnsto
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI support for ddnsto
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: LuCI support for ddnsto
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-ddnsto-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-ddnsto
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-ddnsto - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-ddnsto - 简体中文 (Chinese Simplified)
+
+@@
+
+Package: luci-i18n-ddnsto-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-ddnsto
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-ddnsto - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-ddnsto - 简体中文 (Chinese Simplified)
+
+@@
+
+

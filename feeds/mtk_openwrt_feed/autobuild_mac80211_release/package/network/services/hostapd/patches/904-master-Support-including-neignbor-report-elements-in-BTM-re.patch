@@ -1,0 +1,68 @@
+From 4a7b4a0fe05dd01ae64dd4e291d05de6d5f05bb7 Mon Sep 17 00:00:00 2001
+From: "howard.hsu" <howard-yh.hsu@mediatek.com>
+Date: Wed, 19 Jan 2022 19:49:09 +0800
+Subject: [PATCH 3/9] Support including neignbor report elements in BTM
+ response
+
+---
+ src/ap/wnm_ap.c | 25 +++++++++++++++++++++++--
+ 1 file changed, 23 insertions(+), 2 deletions(-)
+
+diff --git a/src/ap/wnm_ap.c b/src/ap/wnm_ap.c
+index 72cd126..b55b3f3 100644
+--- a/src/ap/wnm_ap.c
++++ b/src/ap/wnm_ap.c
+@@ -20,6 +20,7 @@
+ #include "ap/wpa_auth.h"
+ #include "mbo_ap.h"
+ #include "wnm_ap.h"
++#include "ap/neighbor_db.h"
+ 
+ #define MAX_TFS_IE_LEN  1024
+ 
+@@ -370,9 +371,21 @@ static int ieee802_11_send_bss_trans_mgmt_request(struct hostapd_data *hapd,
+ 	u8 *pos;
+ 	int res;
+ 
+-	mgmt = os_zalloc(sizeof(*mgmt));
+-	if (mgmt == NULL)
++	int nr_num = hostapd_neighbor_count(hapd);
++	int nr_size = ETH_ALEN + 4 + 1 + 1 + 1 + 5;
++	int total_nr_size = nr_num * nr_size;
++	u8 *nr_data = os_malloc(total_nr_size);
++	int nr_data_len = 0;
++	if(nr_data == NULL) {
++		wpa_printf (MSG_ERROR, "Failed to allocate memory");
++	} else {
++	    nr_data_len = hostapd_neighbor_insert_buffer(hapd, nr_data, total_nr_size);
++	}
++	mgmt = os_zalloc(sizeof(*mgmt) + nr_data_len);
++	if (mgmt == NULL) {
++		wpa_printf (MSG_ERROR, "Failed to allocate memory for mgmt frame");
+ 		return -1;
++	}
+ 	os_memcpy(mgmt->da, addr, ETH_ALEN);
+ 	os_memcpy(mgmt->sa, hapd->own_addr, ETH_ALEN);
+ 	os_memcpy(mgmt->bssid, hapd->own_addr, ETH_ALEN);
+@@ -382,10 +395,18 @@ static int ieee802_11_send_bss_trans_mgmt_request(struct hostapd_data *hapd,
+ 	mgmt->u.action.u.bss_tm_req.action = WNM_BSS_TRANS_MGMT_REQ;
+ 	mgmt->u.action.u.bss_tm_req.dialog_token = dialog_token;
+ 	mgmt->u.action.u.bss_tm_req.req_mode = 0;
++	if(nr_num) {
++		mgmt->u.action.u.bss_tm_req.req_mode |= WNM_BSS_TM_REQ_PREF_CAND_LIST_INCLUDED;
++	}
+ 	mgmt->u.action.u.bss_tm_req.disassoc_timer = host_to_le16(0);
+ 	mgmt->u.action.u.bss_tm_req.validity_interval = 1;
+ 	pos = mgmt->u.action.u.bss_tm_req.variable;
+ 
++	if(nr_num) {
++		os_memcpy(pos, nr_data, nr_data_len);
++		pos += nr_data_len;
++	}
++
+ 	hapd->openwrt_stats.wnm.bss_transition_request_tx++;
+ 	wpa_printf(MSG_DEBUG, "WNM: Send BSS Transition Management Request to "
+ 		   MACSTR " dialog_token=%u req_mode=0x%x disassoc_timer=%u "
+-- 
+2.18.0
+

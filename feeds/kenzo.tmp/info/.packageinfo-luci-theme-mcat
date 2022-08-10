@@ -1,0 +1,22 @@
+Source-Makefile: feeds/kenzo/luci-theme-mcat/Makefile
+
+Package: luci-theme-mcat
+Submenu: 4. Themes
+Version: 0.2.50-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: Mcat new kenzo
+Maintainer: 
+Source: 
+Type: ipkg
+Description: Mcat new kenzo
+http://wcan.in/
+
+@@
+
+

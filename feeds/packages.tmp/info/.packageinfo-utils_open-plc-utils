@@ -1,0 +1,2184 @@
+Source-Makefile: feeds/packages/utils/open-plc-utils/Makefile
+
+Package: open-plc-utils
+Menu: 1
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Qualcomm Atheros Power Line Communication utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description: Qualcomm Atheros Power Line Communication utilities
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-efbu
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility efbu from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility efbu from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-efeu
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility efeu from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility efeu from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-efru
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility efru from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility efru from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-efsu
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility efsu from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility efsu from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-edru
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility edru from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility edru from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-edsu
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility edsu from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility edsu from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-nics
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility nics from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility nics from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-hpavkey
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility hpavkey from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility hpavkey from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-hpavkeys
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility hpavkeys from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility hpavkeys from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-rkey
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility rkey from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility rkey from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mac2pw
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mac2pw from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mac2pw from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mac2pwd
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mac2pwd from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mac2pwd from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mdioblock
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mdioblock from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mdioblock from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mdioblock2
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mdioblock2 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mdioblock2 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mdiodump
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mdiodump from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mdiodump from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mdiogen
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mdiogen from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mdiogen from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-hpav
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility hpav from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility hpav from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mme
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mme from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mme from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-chknvm
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility chknvm from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility chknvm from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-chknvm2
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility chknvm2 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility chknvm2 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-nvmsplit
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility nvmsplit from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility nvmsplit from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-nvmmerge
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility nvmmerge from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility nvmmerge from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-chkpib
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility chkpib from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility chkpib from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-chkpib2
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility chkpib2 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility chkpib2 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-setpib
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility setpib from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility setpib from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-getpib
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility getpib from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility getpib from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-modpib
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility modpib from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility modpib from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pib2xml
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pib2xml from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pib2xml from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pibcomp
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pibcomp from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pibcomp from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pibdump
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pibdump from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pibdump from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pibruin
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pibruin from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pibruin from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-xml2pib
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility xml2pib from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility xml2pib from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-psin
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility psin from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility psin from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-psout
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility psout from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility psout from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pskey
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pskey from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pskey from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-psgraph
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility psgraph from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility psgraph from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-psnotch
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility psnotch from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility psnotch from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pibrump
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pibrump from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pibrump from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6k
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6k from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6k from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kboot
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kboot from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kboot from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6keth
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6keth from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6keth from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kf
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kf from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kf from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6khost
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6khost from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6khost from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int64host
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int64host from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int64host from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kid
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kid from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kid from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6klist
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6klist from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6klist from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6klog
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6klog from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6klog from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kmdio
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kmdio from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kmdio from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kmdio2
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kmdio2 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kmdio2 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kmod
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kmod from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kmod from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kstat
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kstat from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kstat from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6ktest
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6ktest from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6ktest from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6krate
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6krate from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6krate from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6krule
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6krule from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6krule from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6ktone
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6ktone from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6ktone from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kwait
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kwait from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kwait from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-CMEncrypt
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility CMEncrypt from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility CMEncrypt from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-sada
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility sada from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility sada from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-coqos_add
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility coqos_add from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility coqos_add from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-coqos_info
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility coqos_info from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility coqos_info from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-coqos_man
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility coqos_man from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility coqos_man from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-coqos_mod
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility coqos_mod from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility coqos_mod from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-coqos_rel
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility coqos_rel from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility coqos_rel from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-mdustats
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility mdustats from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility mdustats from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ampboot
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ampboot from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ampboot from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amphost
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amphost from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amphost from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ampID
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ampID from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ampID from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amplist
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amplist from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amplist from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amprate
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amprate from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amprate from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amprule
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amprule from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amprule from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ampstat
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ampstat from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ampstat from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amptest
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amptest from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amptest from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amptool
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amptool from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amptool from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-amptone
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility amptone from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility amptone from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ampwait
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ampwait from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ampwait from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcboot
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcboot from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcboot from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plchost
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plchost from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plchost from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcID
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcID from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcID from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plclist
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plclist from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plclist from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcrate
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcrate from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcrate from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcrule
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcrule from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcrule from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcstat
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcstat from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcstat from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plctest
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plctest from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plctest from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plctool
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plctool from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plctool from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plctone
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plctone from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plctone from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcwait
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcwait from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcwait from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plchostd
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plchostd from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plchostd from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcget
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcget from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcget from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcset
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcset from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcset from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcotst
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcotst from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcotst from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcfwd
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcfwd from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcfwd from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcdevs
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcdevs from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcdevs from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plclog
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plclog from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plclog from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcmdio16
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcmdio16 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcmdio16 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-plcmdio32
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility plcmdio32 from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility plcmdio32 from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-config2cfg
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility config2cfg from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility config2cfg from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-sdram
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility sdram from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility sdram from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kuart
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kuart from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kuart from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kbaud
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kbaud from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kbaud from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ttysig
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ttysig from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ttysig from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ptsctl
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ptsctl from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ptsctl from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-weeder
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility weeder from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility weeder from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ttysend
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ttysend from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ttysend from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ttyrecv
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ttyrecv from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ttyrecv from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-ttycat
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility ttycat from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility ttycat from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-int6kdetect
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility int6kdetect from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility int6kdetect from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-pev
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility pev from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility pev from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+Package: open-plc-utils-evse
+Version: bb50f635ef6cec8b52898051e0d18f4ac3fdd331-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread open-plc-utils
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Utility evse from the Open PLC utilities
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: open-plc-utils-bb50f635ef6cec8b52898051e0d18f4ac3fdd331.tar.xz
+License: ISC
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     Utility evse from the Open PLC utilities package.
+https://github.com/qca/open-plc-utils/blob/master/README
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+

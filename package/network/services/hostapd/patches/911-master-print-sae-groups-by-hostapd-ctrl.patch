@@ -1,0 +1,22 @@
+--- a/hostapd/ctrl_iface.c
++++ b/hostapd/ctrl_iface.c
+@@ -1584,6 +1584,19 @@ static int hostapd_ctrl_iface_get(struct
+ 		if (os_snprintf_error(buflen, res))
+ 			return -1;
+ 		return res;
++	} else if (os_strcmp(cmd, "sae_group_capability") == 0) {
++#ifdef CONFIG_SAE
++		/* see sae_set_group() */
++		res = os_snprintf(buf, buflen, "%s%s%s%s19 20 21",
++				  dh_groups_get(15) ? "15 ": "",
++				  dh_groups_get(16) ? "16 ": "",
++				  dh_groups_get(17) ? "17 ": "",
++				  dh_groups_get(18) ? "18 ": "");
++
++		if (os_snprintf_error(buflen, res))
++			return -1;
++		return res;
++#endif /* CONFIG_SAE */
+ 	}
+ 
+ 	return -1;

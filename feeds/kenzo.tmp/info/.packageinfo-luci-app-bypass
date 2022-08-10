@@ -1,0 +1,116 @@
+Source-Makefile: feeds/kenzo/luci-app-bypass/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-bypass
+Submenu: 3. Applications
+Version: 1.2
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +ipset +kmod-ipt-nat +ip-full +iptables-mod-tproxy +dnsmasq-full +smartdns +coreutils +coreutils-base64 +curl +tcping +chinadns-ng +lua +luci-compat +unzip +lua-maxminddb +PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server:shadowsocks-libev-ss-server +PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client:shadowsocks-libev-ss-local +PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client:shadowsocks-libev-ss-redir +PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client:shadowsocksr-libev-ssr-local +PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client:shadowsocksr-libev-ssr-redir +PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server:shadowsocksr-libev-ssr-server +PACKAGE_luci-app-bypass_INCLUDE_Simple_obfs:simple-obfs +PACKAGE_luci-app-bypass_INCLUDE_V2ray_plugin:v2ray-plugin +PACKAGE_luci-app-bypass_INCLUDE_Xray:xray-core +PACKAGE_luci-app-bypass_INCLUDE_Trojan:trojan-plus +PACKAGE_luci-app-bypass_INCLUDE_Trojan-Go:trojan-go +PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy:naiveproxy +PACKAGE_luci-app-bypass_INCLUDE_Kcptun:kcptun-client +PACKAGE_luci-app-bypass_INCLUDE_Socks5_Proxy:redsocks2 +PACKAGE_luci-app-bypass_INCLUDE_Socks_Server:microsocks
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: SS/SSR/Xray/Trojan/Trojan-Go/NaiveProxy/Socks5/Tun LuCI interface
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: SS/SSR/Xray/Trojan/Trojan-Go/NaiveProxy/Socks5/Tun LuCI interface
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+Config:
+
+config PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Client
+	bool "Include Shadowsocks Libev Client"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_Shadowsocks_Libev_Server
+	bool "Include Shadowsocks Libev Server"
+	default y if i386||x86_64||arm
+
+config PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Client
+	bool "Include ShadowsocksR Libev Client"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_ShadowsocksR_Libev_Server
+	bool "Include ShadowsocksR Libev Server"
+	default y if i386||x86_64||arm
+
+config PACKAGE_luci-app-bypass_INCLUDE_Simple_Obfs
+	bool "Include Shadowsocks Simple Obfs Plugin"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_V2ray_plugin
+	bool "Include Shadowsocks V2ray Plugin"
+	default n
+
+config PACKAGE_luci-app-bypass_INCLUDE_Xray
+	bool "Include Xray"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_Trojan
+	bool "Include Trojan"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_Trojan-Go
+	bool "Include Trojan Go"
+	default n
+
+config PACKAGE_luci-app-bypass_INCLUDE_NaiveProxy
+	bool "Include NaiveProxy"
+	depends on !(arc||armeb||mips||mips64||powerpc)
+	default n
+
+config PACKAGE_luci-app-bypass_INCLUDE_Kcptun
+	bool "Include Kcptun"
+	default n
+
+config PACKAGE_luci-app-bypass_INCLUDE_Socks5_Proxy
+	bool "Include Socks5 Transparent Proxy"
+	default y
+
+config PACKAGE_luci-app-bypass_INCLUDE_Socks_Server
+	bool "Include Socks Sever"
+	default y
+@@
+
+Package: luci-i18n-bypass-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-bypass
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-bypass - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-bypass - 简体中文 (Chinese Simplified)
+
+@@
+
+Package: luci-i18n-bypass-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-bypass
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-bypass - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-bypass - 简体中文 (Chinese Simplified)
+
+@@
+
+

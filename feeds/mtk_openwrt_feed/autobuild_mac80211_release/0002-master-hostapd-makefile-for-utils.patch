@@ -1,0 +1,30 @@
+Index: lede/package/network/services/hostapd/Makefile
+===================================================================
+--- lede.orig/package/network/services/hostapd/Makefile
++++ lede/package/network/services/hostapd/Makefile
+@@ -429,7 +429,6 @@ define Package/hostapd-utils
+   TITLE:=IEEE 802.1x Authenticator (utils)
+   URL:=http://hostap.epitest.fi/
+   DEPENDS:=@$(subst $(space),||,$(foreach pkg,$(HOSTAPD_PROVIDERS),PACKAGE_$(pkg)))
+-  VARIANT:=*
+ endef
+ 
+ define Package/hostapd-utils/description
+@@ -443,7 +442,6 @@ define Package/wpa-cli
+   SUBMENU:=WirelessAPD
+   DEPENDS:=@$(subst $(space),||,$(foreach pkg,$(SUPPLICANT_PROVIDERS),PACKAGE_$(pkg)))
+   TITLE:=WPA Supplicant command line control utility
+-  VARIANT:=*
+ endef
+ 
+ define Package/eapol-test/Default
+@@ -607,6 +605,9 @@ define Package/hostapd-common/install
+ 	$(INSTALL_BIN) ./files/wps-hotplug.sh $(1)/etc/rc.button/wps
+ 	$(INSTALL_DATA) ./files/wpad_acl.json $(1)/usr/share/acl.d
+ 	$(INSTALL_DATA) ./files/wpad.json $(1)/etc/capabilities
++	[ ! -d $(STAGING_DIR)/usr/include/wpa_ctrl.h ] && $(CP) -f $(PKG_BUILD_DIR)/src/common/wpa_ctrl.h $(STAGING_DIR)/usr/include
++	[ ! -d $(STAGING_DIR)/usr/lib/wpa_ctrl.o ] && $(CP) -f $(PKG_BUILD_DIR)/build/hostapd/src/common/wpa_ctrl.o $(STAGING_DIR)/usr/lib
++	[ ! -d $(STAGING_DIR)/usr/lib/os_unix.o ] && $(CP) -f $(PKG_BUILD_DIR)/build/hostapd/src/utils/os_unix.o $(STAGING_DIR)/usr/lib
+ endef
+ 
+ define Package/hostapd/install

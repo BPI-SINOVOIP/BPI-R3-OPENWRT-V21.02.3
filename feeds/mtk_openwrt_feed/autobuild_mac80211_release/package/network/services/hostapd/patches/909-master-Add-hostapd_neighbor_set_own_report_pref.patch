@@ -1,0 +1,87 @@
+From 12b95b365372ca8167b8fdbfd192fcd4dcb11419 Mon Sep 17 00:00:00 2001
+From: Howard Hsu <howard-yh.hsu@mediatek.com>
+Date: Thu, 9 Jun 2022 20:00:49 +0800
+Subject: [PATCH 5/6] Add hostapd_neighbor_set_own_report_pref()
+
+---
+ src/ap/ctrl_iface_ap.c |  6 +++++-
+ src/ap/neighbor_db.c   | 36 ++++++++++++++++++++++++++++++++++++
+ src/ap/neighbor_db.h   |  2 ++
+ 3 files changed, 43 insertions(+), 1 deletion(-)
+
+diff --git a/src/ap/ctrl_iface_ap.c b/src/ap/ctrl_iface_ap.c
+index fccc5f9..d5d4e33 100644
+--- a/src/ap/ctrl_iface_ap.c
++++ b/src/ap/ctrl_iface_ap.c
+@@ -1241,8 +1241,12 @@ int hostapd_ctrl_iface_bss_tm_req(struct hostapd_data *hapd,
+ 	}
+ 	if (os_strstr(cmd, " abridged=1"))
+ 		req_mode |= WNM_BSS_TM_REQ_ABRIDGED;
+-	if (os_strstr(cmd, " disassoc_imminent=1"))
++	if (os_strstr(cmd, " disassoc_imminent=1")) {
+ 		req_mode |= WNM_BSS_TM_REQ_DISASSOC_IMMINENT;
++		/* Set own BSS neighbor report preference value as 0 */
++		hostapd_neighbor_set_own_report_pref(hapd, nei_rep, nei_len, 0);
++	}
++
+ 
+ #ifdef CONFIG_MBO
+ 	pos = os_strstr(cmd, "mbo=");
+diff --git a/src/ap/neighbor_db.c b/src/ap/neighbor_db.c
+index fabe64d..20a4417 100644
+--- a/src/ap/neighbor_db.c
++++ b/src/ap/neighbor_db.c
+@@ -355,3 +355,39 @@ void hostapd_neighbor_set_own_report(struct hostapd_data *hapd)
+ 	wpabuf_free(nr);
+ #endif /* NEED_AP_MLME */
+ }
++
++
++void hostapd_neighbor_set_own_report_pref(struct hostapd_data *hapd, char *nei_buf,
++			 size_t buflen, const int pref)
++{
++	struct hostapd_neighbor_entry *nr;
++	char *pos, *next_nr;
++
++	pos = nei_buf;
++	next_nr = nei_buf;
++
++	dl_list_for_each(nr, &hapd->nr_db, struct hostapd_neighbor_entry,
++			 list) {
++		pos = next_nr;
++		next_nr = pos + 2 + wpabuf_len(nr->nr);
++		/* Shift 2 bytes for Element ID and Neighbor report length */
++		pos = pos + 2;
++		if(os_memcmp(pos, hapd->own_addr, ETH_ALEN) == 0) {
++			/* Shift for BSSID + BSSID info + Op_class + channel num + PHY type */
++			pos = pos + 6 + 4 + 1 + 1 + 1;
++
++			/* Iterate Subelement */
++			while (next_nr - pos > 0) {
++				if (*pos == 3) {
++					pos = pos + 2;
++					*pos = pref;
++					return;
++				} else {
++					pos++;
++					int shift_len = *pos++;
++					pos = pos + shift_len;
++				}
++			}
++		}
++	}
++}
+diff --git a/src/ap/neighbor_db.h b/src/ap/neighbor_db.h
+index 1ae194d..2e16f72 100644
+--- a/src/ap/neighbor_db.h
++++ b/src/ap/neighbor_db.h
+@@ -27,4 +27,6 @@ void hostapd_free_neighbor_db(struct hostapd_data *hapd);
+ int hostapd_neighbor_count(struct hostapd_data *hapd);
+ int hostapd_neighbor_insert_buffer(struct hostapd_data *hapd, char *buf,
+         size_t buflen);
++void hostapd_neighbor_set_own_report_pref(struct hostapd_data *hapd, char *nei_buf,
++			 size_t buflen, const int pref);
+ #endif /* NEIGHBOR_DB_H */
+-- 
+2.18.0
+

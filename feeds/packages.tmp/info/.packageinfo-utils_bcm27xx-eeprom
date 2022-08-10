@@ -1,0 +1,22 @@
+Source-Makefile: feeds/packages/utils/bcm27xx-eeprom/Makefile
+
+Package: bcm27xx-eeprom
+Version: 3129546271da09dde04da5c9715db909b8e1e417-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread bcm27xx-userland +blkid +coreutils +coreutils-od +pciutils +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: BCM27xx EEPROM tools
+Maintainer: Álvaro Fernández Rojas <noltari@gmail.com>
+Source: bcm27xx-eeprom-3129546271da09dde04da5c9715db909b8e1e417.tar.gz
+License: BSD-3-Clause Custom
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   BCM27xx EEPROM tools.
+Álvaro Fernández Rojas <noltari@gmail.com>
+@@
+
+

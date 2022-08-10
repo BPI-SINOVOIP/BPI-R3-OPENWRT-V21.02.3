@@ -1,0 +1,64 @@
+Source-Makefile: feeds/kenzo/luci-app-amlogic/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-amlogic
+Submenu: 3. Applications
+Version: 3.1.104
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm) +luci +luci-lib-nixio +block-mount +blkid +parted +dosfstools +e2fsprogs +lsblk +pv +losetup +uuidgen
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI support for Amlogic, Allwinner and Rockchip related boxs
+Maintainer: OpenWrt LuCI community
+Source: 
+License: GPL-2.0 License
+Type: ipkg
+Description: LuCI support for Amlogic, Allwinner and Rockchip related boxs
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-amlogic-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-amlogic
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-amlogic - zh-cn translation
+Maintainer: ophub <https://github.com/ophub/luci-app-amlogic>
+Source: 
+License: GPL-2.0 License
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-amlogic - 简体中文 (Chinese Simplified)
+ophub <https://github.com/ophub/luci-app-amlogic>
+@@
+
+Package: luci-i18n-amlogic-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-amlogic
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-amlogic - zh-cn translation
+Maintainer: ophub <https://github.com/ophub/luci-app-amlogic>
+Source: 
+License: GPL-2.0 License
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-amlogic - 简体中文 (Chinese Simplified)
+ophub <https://github.com/ophub/luci-app-amlogic>
+@@
+
+

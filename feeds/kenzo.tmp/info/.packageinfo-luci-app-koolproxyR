@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/luci-app-koolproxyR/Makefile
+
+Package: luci-app-koolproxyR
+Submenu: 3. Applications
+Version: 3.8.4-5
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +openssl-util +ipset +dnsmasq-full +@BUSYBOX_CONFIG_DIFF +iptables-mod-nat-extra +wget
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI support for koolproxyR
+Maintainer: panda-mute
+Source: 
+License: GPLv3
+LicenseFiles: LICENSE
+Type: ipkg
+Description: 	This package contains LuCI configuration pages for koolproxy.
+panda-mute
+@@
+
+

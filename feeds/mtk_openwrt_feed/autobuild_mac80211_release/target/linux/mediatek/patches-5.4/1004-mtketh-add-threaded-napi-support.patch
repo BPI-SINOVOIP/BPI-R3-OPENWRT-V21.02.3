@@ -1,0 +1,14 @@
+diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+index b6bdb978..9de1b0b6 100755
+--- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
++++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+@@ -3696,6 +3696,9 @@ static int mtk_probe(struct platform_device *pdev)
+ 	 * for NAPI to work
+ 	 */
+ 	init_dummy_netdev(&eth->dummy_dev);
++	eth->dummy_dev.threaded = 1;
++	strcpy(eth->dummy_dev.name, "mtk_eth");
++
+ 	netif_napi_add(&eth->dummy_dev, &eth->tx_napi, mtk_napi_tx,
+ 		       MTK_NAPI_WEIGHT);
+ 	netif_napi_add(&eth->dummy_dev, &eth->rx_napi[0].napi, mtk_napi_rx,

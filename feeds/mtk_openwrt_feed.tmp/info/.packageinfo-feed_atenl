@@ -1,0 +1,22 @@
+Source-Makefile: feeds/mtk_openwrt_feed/feed/atenl/Makefile
+
+Package: atenl
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: testmode daemon for nl80211
+Maintainer: Shayne Chen <shayne.chen@mediatek.com>
+Source: 
+License: GPLv2
+Type: ipkg
+Description: testmode daemon for nl80211
+Shayne Chen <shayne.chen@mediatek.com>
+@@
+
+

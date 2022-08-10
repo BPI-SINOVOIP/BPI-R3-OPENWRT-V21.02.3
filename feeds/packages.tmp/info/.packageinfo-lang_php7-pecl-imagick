@@ -1,0 +1,25 @@
+Source-Makefile: feeds/packages/lang/php7-pecl-imagick/Makefile
+Build-Depends: php7 !BUILD_NLS:libiconv !BUILD_NLS:gettext
+
+Package: php7-pecl-imagick
+Submenu: PHP7
+Version: 3.5.1-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php7 +imagemagick
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Image Processing (ImageMagick binding)
+Maintainer: W. Michael Petullo <mike@flyn.org>
+Source: imagick-3.5.1.tgz
+License: PHP-3.01
+LicenseFiles: LICENSE
+Type: ipkg
+Description: Image Processing (ImageMagick binding)
+http://pecl.php.net/
+W. Michael Petullo <mike@flyn.org>
+@@
+
+

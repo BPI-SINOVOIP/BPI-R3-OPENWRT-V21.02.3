@@ -1,0 +1,82 @@
+Source-Makefile: feeds/kenzo/luci-app-vssr/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-vssr
+Submenu: 3. Applications
+Version: 1.25
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +ipset +ip-full +iptables-mod-tproxy +dnsmasq-full +coreutils +coreutils-base64 +bash +pdnsd-alt +wget-ssl +lua +luasocket +lua-maxminddb +lua-cjson +shadowsocks-libev-ss-local +shadowsocks-libev-ss-redir +shadowsocksr-libev-ssr-local +shadowsocksr-libev-ssr-redir +shadowsocksr-libev-ssr-check +simple-obfs +PACKAGE_luci-app-vssr_INCLUDE_Xray:xray-core +PACKAGE_luci-app-vssr_INCLUDE_Trojan:trojan +PACKAGE_luci-app-vssr_INCLUDE_Trojan:ipt2socks +PACKAGE_luci-app-vssr_INCLUDE_Kcptun:kcptun-client +PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin:xray-plugin +PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server:shadowsocksr-libev-ssr-server
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: A New SS/SSR/Xray/Trojan LuCI interface
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: A New SS/SSR/Xray/Trojan LuCI interface
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+Config:
+config PACKAGE_luci-app-vssr_INCLUDE_Xray
+	bool "Include Xray"
+	default y if i386||x86_64||arm||aarch64
+
+config PACKAGE_luci-app-vssr_INCLUDE_Trojan
+	bool "Include Trojan"
+	default y if i386||x86_64||arm||aarch64
+	
+config PACKAGE_luci-app-vssr_INCLUDE_Kcptun
+	bool "Include Kcptun"
+	default n
+
+config PACKAGE_luci-app-vssr_INCLUDE_Xray_plugin
+	bool "Include Shadowsocks Xray Plugin"
+	default y if i386||x86_64||arm||aarch64
+	
+config PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Libev_Server
+	bool "Include ShadowsocksR Libev Server"
+	default y if i386||x86_64||arm||aarch64
+@@
+
+Package: luci-i18n-vssr-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-vssr
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-vssr - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-vssr - 简体中文 (Chinese Simplified)
+
+@@
+
+Package: luci-i18n-vssr-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-vssr
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-vssr - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-vssr - 简体中文 (Chinese Simplified)
+
+@@
+
+

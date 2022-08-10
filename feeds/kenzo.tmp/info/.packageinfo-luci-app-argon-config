@@ -1,0 +1,80 @@
+Source-Makefile: feeds/kenzo/luci-app-argon-config/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-argon-config
+Submenu: 3. Applications
+Version: 0.9
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-compat
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI page for Argon Config
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: LuCI page for Argon Config
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-argon-config-es
+Default: LUCI_LANG_es||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-argon-config
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-argon-config - es translation
+Maintainer: jerrykuku <jerrykuku@qq.com>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-argon-config - Español (Spanish)
+jerrykuku <jerrykuku@qq.com>
+@@
+
+Package: luci-i18n-argon-config-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-argon-config
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-argon-config - zh-cn translation
+Maintainer: jerrykuku <jerrykuku@qq.com>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-argon-config - 简体中文 (Chinese Simplified)
+jerrykuku <jerrykuku@qq.com>
+@@
+
+Package: luci-i18n-argon-config-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-argon-config
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-argon-config - zh-cn translation
+Maintainer: jerrykuku <jerrykuku@qq.com>
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-argon-config - 简体中文 (Chinese Simplified)
+jerrykuku <jerrykuku@qq.com>
+@@
+
+

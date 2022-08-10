@@ -1,0 +1,25 @@
+Source-Makefile: feeds/small/v2ray-plugin/Makefile
+Build-Depends: golang/host
+
+Package: v2ray-plugin
+Submenu: Web Servers/Proxies
+Version: 5.0.7-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: SIP003 plugin for shadowsocks, based on v2ray
+Maintainer: madeye <max.c.lv@gmail.com>
+Source: v2ray-plugin-5.0.7.tar.gz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description: SIP003 plugin for shadowsocks, based on v2ray
+https://github.com/teddysun/v2ray-plugin
+madeye <max.c.lv@gmail.com>
+@@
+
+

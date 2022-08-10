@@ -1,0 +1,21 @@
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mwctl/Makefile
+
+Package: mwctl
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: devel
+Category: Development
+Repository: base
+Title: vendor cmd for logan/mt76 driver
+Maintainer: 
+Source: 
+License: GPLv2
+Type: ipkg
+Description: vendor cmd for logan/mt76 driver
+
+@@
+
+

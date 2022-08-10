@@ -1,0 +1,10 @@
+--- a/target/linux/mediatek/mt7622/config-5.4
++++ b/target/linux/mediatek/mt7622/config-5.4
+@@ -414,6 +414,7 @@ CONFIG_MTK_SCPSYS=y
+ CONFIG_MTK_THERMAL=y
+ CONFIG_MTK_TIMER=y
+ # CONFIG_MTK_UART_APDMA is not set
++CONFIG_MTK_SPI_NAND=y
+ CONFIG_MUTEX_SPIN_ON_OWNER=y
+ CONFIG_NEED_DMA_MAP_STATE=y
+ CONFIG_NEED_SG_DMA_LENGTH=y

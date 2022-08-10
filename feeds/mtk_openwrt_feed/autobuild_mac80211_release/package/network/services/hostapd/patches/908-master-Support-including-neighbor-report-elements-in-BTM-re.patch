@@ -1,0 +1,31 @@
+From e6f1c893d375aa952e1f9c8c1eb4ecacf588e4e2 Mon Sep 17 00:00:00 2001
+From: Howard Hsu <howard-yh.hsu@mediatek.com>
+Date: Thu, 9 Jun 2022 19:58:57 +0800
+Subject: [PATCH 4/6] Support including neighbor report elements in BTM request
+
+---
+ src/ap/ctrl_iface_ap.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/src/ap/ctrl_iface_ap.c b/src/ap/ctrl_iface_ap.c
+index aad5180..fccc5f9 100644
+--- a/src/ap/ctrl_iface_ap.c
++++ b/src/ap/ctrl_iface_ap.c
+@@ -1232,8 +1232,13 @@ int hostapd_ctrl_iface_bss_tm_req(struct hostapd_data *hapd,
+ 		req_mode |= WNM_BSS_TM_REQ_ESS_DISASSOC_IMMINENT;
+ 	}
+ 
+-	if (os_strstr(cmd, " pref=1"))
++	if (os_strstr(cmd, " pref=1")) {
+ 		req_mode |= WNM_BSS_TM_REQ_PREF_CAND_LIST_INCLUDED;
++		if (nei_len == 0) {
++			// Add neigibor report from neighbor report db to nei_rep buffer
++			nei_len = hostapd_neighbor_insert_buffer (hapd, nei_rep, 1000);
++		}
++	}
+ 	if (os_strstr(cmd, " abridged=1"))
+ 		req_mode |= WNM_BSS_TM_REQ_ABRIDGED;
+ 	if (os_strstr(cmd, " disassoc_imminent=1"))
+-- 
+2.18.0
+

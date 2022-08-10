@@ -1,0 +1,21 @@
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mtk_factory_rw/Makefile
+
+Package: mtk_factory_rw
+Submenu: Misc
+Version: 1-
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: mtk factory read and write
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   mtk factory's data read and write
+
+@@
+
+

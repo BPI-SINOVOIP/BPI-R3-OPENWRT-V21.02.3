@@ -1,0 +1,22 @@
+Source-Makefile: feeds/small/ipt2socks/Makefile
+
+Package: ipt2socks
+Version: 1.1.3-3
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: Convert iptables to socks5
+Maintainer: 
+Source: ipt2socks-1.1.3.tar.gz
+License: AGPL-3.0
+Type: ipkg
+Description:   Utility for converting iptables (redirect/tproxy) to socks5.
+https://github.com/zfl9/ipt2socks
+
+@@
+
+

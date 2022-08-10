@@ -1,0 +1,24 @@
+Source-Makefile: feeds/small/chinadns-ng/Makefile
+
+Package: chinadns-ng
+Submenu: IP Addresses and Names
+Version: 1.0-beta.25-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +ipset
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: ChinaDNS next generation, refactoring with epoll and ipset.
+Maintainer: pexcn <i@pexcn.me>
+Source: chinadns-ng-1.0-beta.25.tar.xz
+License: AGPL-3.0-only
+LicenseFiles: LICENSE
+Type: ipkg
+Description: ChinaDNS next generation, refactoring with epoll and ipset.
+https://github.com/zfl9/chinadns-ng
+pexcn <i@pexcn.me>
+@@
+
+

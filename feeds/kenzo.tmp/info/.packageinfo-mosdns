@@ -1,0 +1,53 @@
+Source-Makefile: feeds/kenzo/mosdns/Makefile
+Build-Depends: golang/host
+
+Package: mosdns
+Submenu: IP Addresses and Names
+Version: 533ada5-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: A plug-in DNS forwarder/splitter
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: mosdns-533ada5.tar.gz
+License: GPL-3.0
+Type: ipkg
+Description: A plug-in DNS forwarder/splitter
+https://github.com/IrineSistiana/mosdns
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+Config:
+config MOSDNS_COMPRESS_GOPROXY
+	bool "Compiling with GOPROXY proxy"
+	default n
+
+config MOSDNS_COMPRESS_UPX
+	bool "Compress executable files with UPX"
+	default y
+@@
+
+Package: mosdns-neo
+Submenu: IP Addresses and Names
+Version: 533ada5-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: A plug-in DNS forwarder/splitter
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: mosdns-533ada5.tar.gz
+License: GPL-3.0
+Type: ipkg
+Description: A plug-in DNS forwarder/splitter
+https://github.com/IrineSistiana/mosdns
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+

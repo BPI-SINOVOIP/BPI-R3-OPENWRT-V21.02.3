@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/luci-app-serverchan/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-serverchan
+Submenu: 3. Applications
+Version: 2.01.4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +iputils-arping +curl +jq
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI support for serverchan
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: LuCI support for serverchan
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+

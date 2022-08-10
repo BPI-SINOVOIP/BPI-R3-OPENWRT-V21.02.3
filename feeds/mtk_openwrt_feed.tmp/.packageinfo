@@ -1,0 +1,189 @@
+Source-Makefile: feeds/mtk_openwrt_feed/feed/atenl/Makefile
+
+Package: atenl
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: testmode daemon for nl80211
+Maintainer: Shayne Chen <shayne.chen@mediatek.com>
+Source: 
+License: GPLv2
+Type: ipkg
+Description: testmode daemon for nl80211
+Shayne Chen <shayne.chen@mediatek.com>
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mii_mgr/Makefile
+
+Package: mii_mgr
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: mii_mgr/mii_mgr_cl45
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   An mdio r/w phy regs program.
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mt76-vendor/Makefile
+
+Package: mt76-vendor
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: devel
+Category: Development
+Repository: base
+Title: vendor cmd for mt76
+Maintainer: 
+Source: 
+License: GPLv2
+Type: ipkg
+Description: vendor cmd for mt76
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mtk_factory_rw/Makefile
+
+Package: mtk_factory_rw
+Submenu: Misc
+Version: 1-
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: mtk factory read and write
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   mtk factory's data read and write
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mtk_failsafe/Makefile
+
+Package: mtk_failsafe
+Submenu: Misc
+Version: 1-
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: mtk failsafe script
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   mtk init script for failsafe mode
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mtkhnat_util/Makefile
+
+Package: mtkhnat_util
+Version: 1-
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: mtk hnat utility
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   mtk hnat util to init hnat module
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/mwctl/Makefile
+
+Package: mwctl
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: devel
+Category: Development
+Repository: base
+Title: vendor cmd for logan/mt76 driver
+Maintainer: 
+Source: 
+License: GPLv2
+Type: ipkg
+Description: vendor cmd for logan/mt76 driver
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/regs/Makefile
+
+Package: regs
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +@KERNEL_DEVMEM
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: an program to read/write from/to a pci device from userspace.
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   Simple program to read/write from/to a pci device from userspace.
+
+@@
+
+
+Source-Makefile: feeds/mtk_openwrt_feed/feed/switch/Makefile
+
+Package: switch
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: Command to config switch
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   An program to config switch.
+
+@@
+
+

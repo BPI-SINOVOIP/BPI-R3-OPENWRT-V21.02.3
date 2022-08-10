@@ -1,0 +1,61 @@
+Source-Makefile: feeds/kenzo/luci-app-easymesh/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-easymesh
+Submenu: 3. Applications
+Version: 2.0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-cfg80211 +batctl-default +kmod-batman-adv +wpad-mesh-openssl +dawn
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for easymesh
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: LuCI Support for easymesh
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-easymesh-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-easymesh
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-easymesh - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-easymesh - 简体中文 (Chinese Simplified)
+
+@@
+
+Package: luci-i18n-easymesh-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-easymesh
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-easymesh - zh-cn translation
+Maintainer: 
+Source: 
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-easymesh - 简体中文 (Chinese Simplified)
+
+@@
+
+

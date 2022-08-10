@@ -1,0 +1,10 @@
+--- a/target/linux/generic/config-5.4
++++ b/target/linux/generic/config-5.4
+@@ -3796,6 +3796,7 @@ CONFIG_NLS_DEFAULT="iso8859-1"
+ # CONFIG_NLS_MAC_ROMANIAN is not set
+ # CONFIG_NLS_MAC_TURKISH is not set
+ # CONFIG_NLS_UTF8 is not set
++# CONFIG_NMBM is not set
+ CONFIG_NMI_LOG_BUF_SHIFT=13
+ # CONFIG_NOA1305 is not set
+ # CONFIG_NOP_USB_XCEIV is not set

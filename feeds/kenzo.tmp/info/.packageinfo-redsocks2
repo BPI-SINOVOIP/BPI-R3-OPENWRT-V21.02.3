@@ -1,0 +1,22 @@
+Source-Makefile: feeds/kenzo/redsocks2/Makefile
+
+Package: redsocks2
+Submenu: Web Servers/Proxies
+Version: 0.67-4
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libevent2 +libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: Redirect any TCP connection to a SOCKS or HTTPS proxy server
+Maintainer: semigodking <semigodking@gmail.com>
+Source: redsocks2-0.67-d94c245ea47859cda5b4b7373308589206b97bdc.tar.gz
+Type: ipkg
+Description: This is a modified version of original redsocks. The name is changed to be REDSOCKS2 since this release to distinguish with original redsocks. This variant is useful for anti-GFW (Great Fire Wall).
+https://github.com/semigodking/redsocks
+semigodking <semigodking@gmail.com>
+@@
+
+

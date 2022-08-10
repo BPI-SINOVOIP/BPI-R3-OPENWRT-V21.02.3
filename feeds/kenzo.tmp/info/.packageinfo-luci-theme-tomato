@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/luci-theme-tomato/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-theme-tomato
+Submenu: 4. Themes
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: Tomato new kenzo
+Maintainer: OpenWrt LuCI community
+Source: 
+Type: ipkg
+Description: Tomato new kenzo
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+

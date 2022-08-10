@@ -1,0 +1,179 @@
+From 2692efbe9806361dd71197bdbe3f30ccfcffdb70 Mon Sep 17 00:00:00 2001
+From: Shayne Chen <shayne.chen@mediatek.com>
+Date: Mon, 6 Jun 2022 19:46:26 +0800
+Subject: [PATCH 01/12] mt76: mt7915: rework testmode init registers
+
+---
+ mt7915/mmio.c     |  2 ++
+ mt7915/regs.h     | 16 +++++++++++++--
+ mt7915/testmode.c | 52 ++++++++++++++++++++++++++++++++++-------------
+ 3 files changed, 54 insertions(+), 16 deletions(-)
+
+diff --git a/mt7915/mmio.c b/mt7915/mmio.c
+index c2646d2..a8e3810 100644
+--- a/mt7915/mmio.c
++++ b/mt7915/mmio.c
+@@ -59,6 +59,7 @@ static const u32 mt7986_reg[] = {
+ };
+ 
+ static const u32 mt7915_offs[] = {
++	[TMAC_TCR2]		= 0x05c,
+ 	[TMAC_CDTR]		= 0x090,
+ 	[TMAC_ODTR]		= 0x094,
+ 	[TMAC_ATCR]		= 0x098,
+@@ -132,6 +133,7 @@ static const u32 mt7915_offs[] = {
+ };
+ 
+ static const u32 mt7916_offs[] = {
++	[TMAC_TCR2]		= 0x004,
+ 	[TMAC_CDTR]		= 0x0c8,
+ 	[TMAC_ODTR]		= 0x0cc,
+ 	[TMAC_ATCR]		= 0x00c,
+diff --git a/mt7915/regs.h b/mt7915/regs.h
+index 77fd448..c7c9e41 100644
+--- a/mt7915/regs.h
++++ b/mt7915/regs.h
+@@ -36,6 +36,7 @@ enum reg_rev {
+ };
+ 
+ enum offs_rev {
++	TMAC_TCR2,
+ 	TMAC_CDTR,
+ 	TMAC_ODTR,
+ 	TMAC_ATCR,
+@@ -185,6 +186,12 @@ enum offs_rev {
+ #define MT_TRB_RXPSR0_RX_WTBL_PTR	GENMASK(25, 16)
+ #define MT_TRB_RXPSR0_RX_RMAC_PTR	GENMASK(9, 0)
+ 
++#define MT_MDP_TOP_DBG_WDT_CTRL			MT_MDP(0x0d0)
++#define MT_MDP_TOP_DBG_WDT_CTRL_TDP_DIS_BLK	BIT(7)
++
++#define MT_MDP_TOP_DBG_CTRL			MT_MDP(0x0dc)
++#define MT_MDP_TOP_DBG_CTRL_ENQ_MODE		BIT(30)
++
+ /* TMAC: band 0(0x820e4000), band 1(0x820f4000) */
+ #define MT_WF_TMAC_BASE(_band)		((_band) ? 0x820f4000 : 0x820e4000)
+ #define MT_WF_TMAC(_band, ofs)		(MT_WF_TMAC_BASE(_band) + (ofs))
+@@ -193,6 +200,9 @@ enum offs_rev {
+ #define MT_TMAC_TCR0_TX_BLINK		GENMASK(7, 6)
+ #define MT_TMAC_TCR0_TBTT_STOP_CTRL	BIT(25)
+ 
++#define MT_TMAC_TCR2(_band)		MT_WF_TMAC(_band, __OFFS(TMAC_TCR2))
++#define MT_TMAC_TCR2_SCH_DET_DIS	BIT(19)
++
+ #define MT_TMAC_CDTR(_band)		MT_WF_TMAC(_band, __OFFS(TMAC_CDTR))
+  #define MT_TMAC_ODTR(_band)		MT_WF_TMAC(_band, __OFFS(TMAC_ODTR))
+ #define MT_TIMEOUT_VAL_PLCP		GENMASK(15, 0)
+@@ -464,8 +474,10 @@ enum offs_rev {
+ #define MT_AGG_PCR0_VHT_PROT		BIT(13)
+ #define MT_AGG_PCR0_PTA_WIN_DIS		BIT(15)
+ 
+-#define MT_AGG_PCR1_RTS0_NUM_THRES	GENMASK(31, 23)
+-#define MT_AGG_PCR1_RTS0_LEN_THRES	GENMASK(19, 0)
++#define MT_AGG_PCR1_RTS0_NUM_THRES		GENMASK(31, 23)
++#define MT_AGG_PCR1_RTS0_LEN_THRES		GENMASK(19, 0)
++#define MT_AGG_PCR1_RTS0_NUM_THRES_MT7916	GENMASK(29, 24)
++#define MT_AGG_PCR1_RTS0_LEN_THRES_MT7916	GENMASK(22, 0)
+ 
+ #define MT_AGG_ACR0(_band)		MT_WF_AGG(_band, __OFFS(AGG_ACR0))
+ #define MT_AGG_ACR_CFEND_RATE		GENMASK(13, 0)
+diff --git a/mt7915/testmode.c b/mt7915/testmode.c
+index 0f5c1e5..20c593d 100644
+--- a/mt7915/testmode.c
++++ b/mt7915/testmode.c
+@@ -30,7 +30,7 @@ struct reg_band {
+ 		{ _list.band[0] = MT_##_reg(0, _idx);	\
+ 		  _list.band[1] = MT_##_reg(1, _idx); }
+ 
+-#define TM_REG_MAX_ID	17
++#define TM_REG_MAX_ID	20
+ static struct reg_band reg_backup_list[TM_REG_MAX_ID];
+ 
+ 
+@@ -335,7 +335,7 @@ mt7915_tm_reg_backup_restore(struct mt7915_phy *phy)
+ {
+ 	int n_regs = ARRAY_SIZE(reg_backup_list);
+ 	struct mt7915_dev *dev = phy->dev;
+-	u32 *b = phy->test.reg_backup;
++	u32 *b = phy->test.reg_backup, val;
+ 	int i;
+ 
+ 	REG_BAND_IDX(reg_backup_list[0], AGG_PCR0, 0);
+@@ -347,18 +347,28 @@ mt7915_tm_reg_backup_restore(struct mt7915_phy *phy)
+ 	REG_BAND(reg_backup_list[6], AGG_MRCR);
+ 	REG_BAND(reg_backup_list[7], TMAC_TFCR0);
+ 	REG_BAND(reg_backup_list[8], TMAC_TCR0);
+-	REG_BAND(reg_backup_list[9], AGG_ATCR1);
+-	REG_BAND(reg_backup_list[10], AGG_ATCR3);
+-	REG_BAND(reg_backup_list[11], TMAC_TRCR0);
+-	REG_BAND(reg_backup_list[12], TMAC_ICR0);
+-	REG_BAND_IDX(reg_backup_list[13], ARB_DRNGR0, 0);
+-	REG_BAND_IDX(reg_backup_list[14], ARB_DRNGR0, 1);
+-	REG_BAND(reg_backup_list[15], WF_RFCR);
+-	REG_BAND(reg_backup_list[16], WF_RFCR1);
++	REG_BAND(reg_backup_list[9], TMAC_TCR2);
++	REG_BAND(reg_backup_list[10], AGG_ATCR1);
++	REG_BAND(reg_backup_list[11], AGG_ATCR3);
++	REG_BAND(reg_backup_list[12], TMAC_TRCR0);
++	REG_BAND(reg_backup_list[13], TMAC_ICR0);
++	REG_BAND_IDX(reg_backup_list[14], ARB_DRNGR0, 0);
++	REG_BAND_IDX(reg_backup_list[15], ARB_DRNGR0, 1);
++	REG_BAND(reg_backup_list[16], WF_RFCR);
++	REG_BAND(reg_backup_list[17], WF_RFCR1);
++
++	if (is_mt7916(&dev->mt76)) {
++		reg_backup_list[18].band[phy->band_idx] = MT_MDP_TOP_DBG_WDT_CTRL;
++		reg_backup_list[19].band[phy->band_idx] = MT_MDP_TOP_DBG_CTRL;
++	}
+ 
+ 	if (phy->mt76->test.state == MT76_TM_STATE_OFF) {
+-		for (i = 0; i < n_regs; i++)
+-			mt76_wr(dev, reg_backup_list[i].band[phy->band_idx], b[i]);
++		for (i = 0; i < n_regs; i++) {
++			u8 reg = reg_backup_list[i].band[phy->band_idx];
++
++			if (reg)
++				mt76_wr(dev, reg, b[i]);
++		}
+ 		return;
+ 	}
+ 
+@@ -378,8 +388,13 @@ mt7915_tm_reg_backup_restore(struct mt7915_phy *phy)
+ 		   MT_AGG_PCR0_BW40_PROT | MT_AGG_PCR0_BW80_PROT);
+ 	mt76_set(dev, MT_AGG_PCR0(phy->band_idx, 0), MT_AGG_PCR0_PTA_WIN_DIS);
+ 
+-	mt76_wr(dev, MT_AGG_PCR0(phy->band_idx, 1), MT_AGG_PCR1_RTS0_NUM_THRES |
+-		MT_AGG_PCR1_RTS0_LEN_THRES);
++	if (is_mt7915(&dev->mt76))
++		val = MT_AGG_PCR1_RTS0_NUM_THRES | MT_AGG_PCR1_RTS0_LEN_THRES;
++	else
++		val = MT_AGG_PCR1_RTS0_NUM_THRES_MT7916 |
++		      MT_AGG_PCR1_RTS0_LEN_THRES_MT7916;
++
++	mt76_wr(dev, MT_AGG_PCR0(phy->band_idx, 1), val);
+ 
+ 	mt76_clear(dev, MT_AGG_MRCR(phy->band_idx), MT_AGG_MRCR_BAR_CNT_LIMIT |
+ 		   MT_AGG_MRCR_LAST_RTS_CTS_RN | MT_AGG_MRCR_RTS_FAIL_LIMIT |
+@@ -392,10 +407,19 @@ mt7915_tm_reg_backup_restore(struct mt7915_phy *phy)
+ 
+ 	mt76_wr(dev, MT_TMAC_TFCR0(phy->band_idx), 0);
+ 	mt76_clear(dev, MT_TMAC_TCR0(phy->band_idx), MT_TMAC_TCR0_TBTT_STOP_CTRL);
++	mt76_set(dev, MT_TMAC_TCR2(phy->band_idx), MT_TMAC_TCR2_SCH_DET_DIS);
+ 
+ 	/* config rx filter for testmode rx */
+ 	mt76_wr(dev, MT_WF_RFCR(phy->band_idx), 0xcf70a);
+ 	mt76_wr(dev, MT_WF_RFCR1(phy->band_idx), 0);
++
++	if (is_mt7916(&dev->mt76)) {
++		/* enable MDP Tx block mode */
++		mt76_clear(dev, MT_MDP_TOP_DBG_WDT_CTRL,
++			   MT_MDP_TOP_DBG_WDT_CTRL_TDP_DIS_BLK);
++		mt76_clear(dev, MT_MDP_TOP_DBG_CTRL,
++			   MT_MDP_TOP_DBG_CTRL_ENQ_MODE);
++	}
+ }
+ 
+ static void
+-- 
+2.18.0
+

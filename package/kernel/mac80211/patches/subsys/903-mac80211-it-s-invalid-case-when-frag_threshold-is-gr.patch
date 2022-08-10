@@ -1,0 +1,28 @@
+From a0b3ac0fe37b3f2bcc5a9593524556b971bb98f5 Mon Sep 17 00:00:00 2001
+From: Bo Jiao <Bo.Jiao@mediatek.com>
+Date: Fri, 1 Apr 2022 09:15:21 +0800
+Subject: [PATCH] mac80211: it's invalid case when frag_threshold is greater
+ than 2346
+
+Signed-off-by: Bo Jiao <Bo.Jiao@mediatek.com>
+---
+ net/wireless/nl80211.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index f54cb1a..10f3131 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -3478,6 +3478,9 @@ static int nl80211_set_wiphy(struct sk_buff *skb, struct genl_info *info)
+ 			goto out;
+ 		}
+ 
++		if (frag_threshold >= 2346)
++			frag_threshold = (u32) -1;
++
+ 		if (frag_threshold != (u32) -1) {
+ 			/*
+ 			 * Fragments (apart from the last one) are required to
+-- 
+2.18.0
+

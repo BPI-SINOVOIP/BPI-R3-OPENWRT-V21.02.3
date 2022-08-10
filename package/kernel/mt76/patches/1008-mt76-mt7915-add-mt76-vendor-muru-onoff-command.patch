@@ -1,0 +1,143 @@
+From 969161a225dd7a1b4c3ecdd0b6d1376566f32f27 Mon Sep 17 00:00:00 2001
+From: MeiChia Chiu <meichia.chiu@mediatek.com>
+Date: Wed, 22 Jun 2022 10:53:43 +0800
+Subject: [PATCH 1008/1008] mt76: mt7915: add mt76 vendor muru onoff command
+
+---
+ mt7915/mcu.c    |  7 +++++++
+ mt7915/mcu.h    |  1 +
+ mt7915/vendor.c | 43 +++++++++++++++++++++++++++++++++++++++++++
+ mt7915/vendor.h | 12 ++++++++++++
+ 4 files changed, 63 insertions(+)
+
+diff --git a/mt7915/mcu.c b/mt7915/mcu.c
+index 7f2161f..aee3a8c 100644
+--- a/mt7915/mcu.c
++++ b/mt7915/mcu.c
+@@ -3656,6 +3656,13 @@ void mt7915_set_wireless_vif(void *data, u8 *mac, struct ieee80211_vif *vif)
+ 		if (val == 0)
+ 			dev->dbg.muru_onoff = MUMIMO_DL_CERT | MUMIMO_DL;
+ 		break;
++	case RATE_PARAM_AUTO_HEMU:
++		if (val < 0 || val > 15) {
++			printk("Wrong value! The value is between 0-15.\n");
++			break;
++		}
++		dev->dbg.muru_onoff = val;
++		break;
+ 	}
+ }
+ 
+diff --git a/mt7915/mcu.h b/mt7915/mcu.h
+index 464e771..75442ba 100644
+--- a/mt7915/mcu.h
++++ b/mt7915/mcu.h
+@@ -402,6 +402,7 @@ enum {
+ #ifdef CONFIG_MTK_VENDOR
+ 	RATE_PARAM_FIXED_MIMO = 30,
+ 	RATE_PARAM_FIXED_OFDMA = 31,
++	RATE_PARAM_AUTO_HEMU = 32,
+ #endif
+ };
+ 
+diff --git a/mt7915/vendor.c b/mt7915/vendor.c
+index 7456c57..c755184 100644
+--- a/mt7915/vendor.c
++++ b/mt7915/vendor.c
+@@ -34,6 +34,11 @@ wireless_ctrl_policy[NUM_MTK_VENDOR_ATTRS_WIRELESS_CTRL] = {
+ 	[MTK_VENDOR_ATTR_WIRELESS_CTRL_CERT] = {.type = NLA_U8 },
+ };
+ 
++static const struct nla_policy
++hemu_ctrl_policy[NUM_MTK_VENDOR_ATTRS_HEMU_CTRL] = {
++	[MTK_VENDOR_ATTR_HEMU_CTRL_ONOFF] = {.type = NLA_U8 },
++};
++
+ static const struct nla_policy
+ rfeature_ctrl_policy[NUM_MTK_VENDOR_ATTRS_RFEATURE_CTRL] = {
+ 	[MTK_VENDOR_ATTR_RFEATURE_CTRL_HE_GI] = {.type = NLA_U8 },
+@@ -942,6 +947,33 @@ static int mt7915_vendor_wireless_ctrl(struct wiphy *wiphy,
+ 	return 0;
+ }
+ 
++static int mt7915_vendor_hemu_ctrl(struct wiphy *wiphy,
++				  struct wireless_dev *wdev,
++				  const void *data,
++				  int data_len)
++{
++	struct ieee80211_hw *hw = wiphy_to_ieee80211_hw(wiphy);
++	struct nlattr *tb[NUM_MTK_VENDOR_ATTRS_HEMU_CTRL];
++	int err;
++	u8 val8;
++	u32 val32 = 0;
++
++	err = nla_parse(tb, MTK_VENDOR_ATTR_HEMU_CTRL_MAX, data, data_len,
++			hemu_ctrl_policy, NULL);
++	if (err)
++		return err;
++
++	if (tb[MTK_VENDOR_ATTR_HEMU_CTRL_ONOFF]) {
++		val8 = nla_get_u8(tb[MTK_VENDOR_ATTR_HEMU_CTRL_ONOFF]);
++		val32 |= FIELD_PREP(RATE_CFG_MODE, RATE_PARAM_AUTO_HEMU) |
++			 FIELD_PREP(RATE_CFG_VAL, val8);
++		ieee80211_iterate_active_interfaces_atomic(hw, IEEE80211_IFACE_ITER_RESUME_ALL,
++			mt7915_set_wireless_vif, &val32);
++	}
++
++	return 0;
++}
++
+ static const struct wiphy_vendor_command mt7915_vendor_commands[] = {
+ 	{
+ 		.info = {
+@@ -988,6 +1020,17 @@ static const struct wiphy_vendor_command mt7915_vendor_commands[] = {
+ 		.doit = mt7915_vendor_wireless_ctrl,
+ 		.policy = wireless_ctrl_policy,
+ 		.maxattr = MTK_VENDOR_ATTR_WIRELESS_CTRL_MAX,
++	},
++	{
++		.info = {
++			.vendor_id = MTK_NL80211_VENDOR_ID,
++			.subcmd = MTK_NL80211_VENDOR_SUBCMD_HEMU_CTRL,
++		},
++		.flags = WIPHY_VENDOR_CMD_NEED_NETDEV |
++			WIPHY_VENDOR_CMD_NEED_RUNNING,
++		.doit = mt7915_vendor_hemu_ctrl,
++		.policy = hemu_ctrl_policy,
++		.maxattr = MTK_VENDOR_ATTR_HEMU_CTRL_MAX,
+ 	}
+ };
+ 
+diff --git a/mt7915/vendor.h b/mt7915/vendor.h
+index 1b08321..a8e4ebf 100644
+--- a/mt7915/vendor.h
++++ b/mt7915/vendor.h
+@@ -8,6 +8,7 @@ enum mtk_nl80211_vendor_subcmds {
+ 	MTK_NL80211_VENDOR_SUBCMD_CSI_CTRL = 0xc2,
+ 	MTK_NL80211_VENDOR_SUBCMD_RFEATURE_CTRL = 0xc3,
+ 	MTK_NL80211_VENDOR_SUBCMD_WIRELESS_CTRL = 0xc4,
++	MTK_NL80211_VENDOR_SUBCMD_HEMU_CTRL = 0xc5,
+ };
+ 
+ enum mtk_capi_control_changed {
+@@ -33,6 +34,17 @@ enum mtk_vendor_attr_wireless_ctrl {
+ 		NUM_MTK_VENDOR_ATTRS_WIRELESS_CTRL - 1
+ };
+ 
++enum mtk_vendor_attr_hemu_ctrl {
++	MTK_VENDOR_ATTR_HEMU_CTRL_UNSPEC,
++
++	MTK_VENDOR_ATTR_HEMU_CTRL_ONOFF,
++
++	/* keep last */
++	NUM_MTK_VENDOR_ATTRS_HEMU_CTRL,
++	MTK_VENDOR_ATTR_HEMU_CTRL_MAX =
++		NUM_MTK_VENDOR_ATTRS_HEMU_CTRL - 1
++};
++
+ enum mtk_vendor_attr_rfeature_ctrl {
+ 	MTK_VENDOR_ATTR_RFEATURE_CTRL_UNSPEC,
+ 
+-- 
+2.18.0
+

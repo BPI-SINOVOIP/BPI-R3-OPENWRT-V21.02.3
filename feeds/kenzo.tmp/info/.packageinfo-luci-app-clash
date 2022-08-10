@@ -1,0 +1,21 @@
+Source-Makefile: feeds/kenzo/luci-app-clash/Makefile
+
+Package: luci-app-clash
+Submenu: 3. Applications
+Version: v1.8.0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-base +wget +iptables +coreutils-base64 +coreutils +coreutils-nohup +bash +ipset +libustream-openssl +curl +jsonfilter +ca-certificates +iptables-mod-tproxy +kmod-tun
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI app for clash
+Maintainer: frainzy1477
+Source: 
+Type: ipkg
+Description: 	Luci Interface for clash.
+frainzy1477
+@@
+
+

@@ -1,0 +1,111 @@
+Source-Makefile: feeds/packages/net/iputils/Makefile
+Build-Depends: meson/host ninja/host
+Build-Depends/host: ninja/host
+
+Package: iputils-ping
+Version: 20210202-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-crypto-md5
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: iputils-ping
+Maintainer: Noah Meyerhans <frodo@morgul.net>
+Source: iputils-20210202.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Send ICMP_ECHOREQUEST packets to IP hosts and report on replies
+https://github.com/iputils/iputils
+Noah Meyerhans <frodo@morgul.net>
+@@
+Config:
+	source "feeds/packages/net/iputils/Config_ping.in"
+@@
+
+Package: iputils-arping
+Version: 20210202-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: iputils-arping
+Maintainer: Noah Meyerhans <frodo@morgul.net>
+Source: iputils-20210202.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Send ARP REQUEST packets to a neighbor host
+https://github.com/iputils/iputils
+Noah Meyerhans <frodo@morgul.net>
+@@
+
+Package: iputils-clockdiff
+Version: 20210202-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: iputils-clockdiff
+Maintainer: Noah Meyerhans <frodo@morgul.net>
+Source: iputils-20210202.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Measure the clock difference between two hosts
+https://github.com/iputils/iputils
+Noah Meyerhans <frodo@morgul.net>
+@@
+
+Package: iputils-tracepath
+Version: 20210202-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: iputils-tracepath
+Maintainer: Noah Meyerhans <frodo@morgul.net>
+Source: iputils-20210202.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   trace network path to a host, discovering PMTU
+https://github.com/iputils/iputils
+Noah Meyerhans <frodo@morgul.net>
+@@
+Config:
+	source "feeds/packages/net/iputils/Config_tracepath.in"
+@@
+
+Package: iputils-tftpd
+Version: 20210202-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: iputils-tftpd
+Maintainer: Noah Meyerhans <frodo@morgul.net>
+Source: iputils-20210202.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Trivial File Transfer Protocol server
+https://github.com/iputils/iputils
+Noah Meyerhans <frodo@morgul.net>
+@@
+
+

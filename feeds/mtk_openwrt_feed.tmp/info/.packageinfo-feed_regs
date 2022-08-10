@@ -1,0 +1,21 @@
+Source-Makefile: feeds/mtk_openwrt_feed/feed/regs/Makefile
+
+Package: regs
+Submenu: Applications
+Version: 1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +@KERNEL_DEVMEM
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: MTK Properties
+Category: MTK Properties
+Repository: base
+Title: an program to read/write from/to a pci device from userspace.
+Maintainer: 
+Source: 
+Type: ipkg
+Description:   Simple program to read/write from/to a pci device from userspace.
+
+@@
+
+

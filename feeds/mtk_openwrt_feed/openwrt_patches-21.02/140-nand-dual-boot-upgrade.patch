@@ -1,0 +1,163 @@
+diff --git a/package/base-files/files/lib/upgrade/nand.sh b/package/base-files/files/lib/upgrade/nand.sh
+index e6f58df..ba8c0fc 100644
+--- a/package/base-files/files/lib/upgrade/nand.sh
++++ b/package/base-files/files/lib/upgrade/nand.sh
+@@ -316,3 +316,158 @@ nand_do_platform_check() {
+ 
+ 	return 0
+ }
++
++dual_boot_upgrade_prepare_ubi() {
++	local kernel_vol_name="$1"
++	local rootfs_vol_name="$2"
++	local kernel_length="$3"
++	local rootfs_length="$4"
++	local reserve_rootfs_data="$5"
++
++	local mtdnum="$( find_mtd_index "$CI_UBIPART" )"
++	if [ ! "$mtdnum" ]; then
++		echo "cannot find ubi mtd partition $CI_UBIPART"
++		return 1
++	fi
++
++	local ubidev="$( nand_find_ubi "$CI_UBIPART" )"
++	if [ ! "$ubidev" ]; then
++		ubiattach -m "$mtdnum"
++		sync
++		ubidev="$( nand_find_ubi "$CI_UBIPART" )"
++	fi
++
++	if [ ! "$ubidev" ]; then
++		ubiformat /dev/mtd$mtdnum -y
++		ubiattach -m "$mtdnum"
++		sync
++		ubidev="$( nand_find_ubi "$CI_UBIPART" )"
++		ubimkvol /dev/$ubidev -n 0 -N u-boot-env -s 512KiB
++	fi
++
++	local rootfs_data_vol_name=$(cat /sys/module/boot_param/parameters/rootfs_data_part 2>/dev/null)
++
++	local kern_ubivol="$( nand_find_volume $ubidev $kernel_vol_name )"
++	local root_ubivol="$( nand_find_volume $ubidev $rootfs_vol_name )"
++	local data_ubivol="$( nand_find_volume $ubidev $rootfs_data_vol_name )"
++
++	# remove ubiblock device of rootfs
++	local root_ubiblk="ubiblock${root_ubivol:3}"
++	if [ "$root_ubivol" -a -e "/dev/$root_ubiblk" ]; then
++		echo "removing $root_ubiblk"
++		if ! ubiblock -r /dev/$root_ubivol; then
++			echo "cannot remove $root_ubiblk"
++			return 1;
++		fi
++	fi
++
++	# kill volumes
++	[ "$kern_ubivol" ] && ubirmvol /dev/$ubidev -N $kernel_vol_name || true
++	[ "$root_ubivol" ] && ubirmvol /dev/$ubidev -N $rootfs_vol_name || true
++
++	# update kernel
++	if ! ubimkvol /dev/$ubidev -N $kernel_vol_name -s $kernel_length; then
++		echo "cannot create kernel volume"
++		return 1;
++	fi
++
++	# update rootfs
++	if ! ubimkvol /dev/$ubidev -N $rootfs_vol_name -s $rootfs_length; then
++		echo "cannot create rootfs volume"
++		return 1;
++	fi
++
++	if [ x"${reserve_rootfs_data}" = xY ]; then
++		# Do not touch rootfs_data
++		sync
++		return 0
++	fi
++
++	# 'format' rootfs_data volume
++	[ "$data_ubivol" ] && {
++		local rootfs_data_length=$(cat /sys/class/ubi/$data_ubivol/data_bytes)
++
++		# kill rootfs_data volume
++		ubirmvol /dev/$ubidev -N $rootfs_data_vol_name || true
++
++		# update rootfs_data
++		if ! ubimkvol /dev/$ubidev -N $rootfs_data_vol_name -s $rootfs_data_length; then
++			echo "cannot create $rootfs_data_vol_name volume"
++		fi
++	}
++
++	sync
++	return 0
++}
++
++ubi_dual_boot_upgrade_tar() {
++	local tar_file="$1"
++	local board_dir=$(tar tf ${tar_file} | grep -m 1 '^sysupgrade-.*/$')
++	local reserve_rootfs_data=$(cat /sys/module/boot_param/parameters/reserve_rootfs_data 2>/dev/null)
++	board_dir=${board_dir%/}
++
++	kernel_vol_name=$(cat /sys/module/boot_param/parameters/upgrade_kernel_part 2>/dev/null)
++	[ -z "${kernel_vol_name}" -o $? -ne 0 ] && return 1
++
++	rootfs_vol_name=$(cat /sys/module/boot_param/parameters/upgrade_rootfs_part 2>/dev/null)
++	[ -z "${rootfs_vol_name}" -o $? -ne 0 ] && return 1
++
++	local kernel_length=$( (tar xf ${tar_file} ${board_dir}/kernel -O | wc -c) 2> /dev/null)
++	local rootfs_length=$( (tar xf ${tar_file} ${board_dir}/root -O | wc -c) 2> /dev/null)
++
++	dual_boot_upgrade_prepare_ubi "${kernel_vol_name}" "${rootfs_vol_name}" \
++				      "${kernel_length}" "${rootfs_length}" \
++				      "${reserve_rootfs_data}"
++
++	local ubidev="$( nand_find_ubi "$CI_UBIPART" )"
++
++	[ "${kernel_length}" != 0 ] && {
++		local kern_ubivol="$(nand_find_volume $ubidev ${kernel_vol_name})"
++		tar xf ${tar_file} ${board_dir}/kernel -O | \
++			ubiupdatevol /dev/${kern_ubivol} -s ${kernel_length} -
++	}
++
++	[ "${rootfs_length}" != 0 ] && {
++		local root_ubivol="$(nand_find_volume $ubidev ${rootfs_vol_name})"
++		tar xf ${tar_file} ${board_dir}/root -O | \
++			ubiupdatevol /dev/${root_ubivol} -s ${rootfs_length} -
++	}
++
++	upgrade_image_slot=$(cat /sys/module/boot_param/parameters/upgrade_image_slot 2>/dev/null)
++	[ -n "${upgrade_image_slot}" ] && {
++		v "Set new boot image slot to ${upgrade_image_slot}"
++		# Force the creation of fw_printenv.lock
++		mkdir -p /var/lock
++		touch /var/lock/fw_printenv.lock
++		fw_setenv "dual_boot.current_slot" "${upgrade_image_slot}"
++		fw_setenv "dual_boot.slot_${upgrade_image_slot}_invalid" "0"
++	}
++
++	if [ x"${reserve_rootfs_data}" != xY ]; then
++		# do normal upgrade flow
++		nand_do_upgrade_success
++	fi
++
++	# Do not touch rootfs_data
++	sync
++
++	echo "sysupgrade successful"
++	umount -a
++	reboot -f
++}
++
++ubi_do_upgrade() {
++	local dual_boot=$(cat /sys/module/boot_param/parameters/dual_boot 2>/dev/null)
++	local file_type=$(identify $1)
++
++	if [ x"${dual_boot}" != xY ]; then
++		nand_do_upgrade "$1"
++		return
++	fi
++
++	case "$file_type" in
++		"ubi")		v "Unsupported firmware type: ubinized";;
++		"ubifs")	v "Unsupported firmware type: ubifs";;
++		*)		ubi_dual_boot_upgrade_tar $1;;
++	esac
++}

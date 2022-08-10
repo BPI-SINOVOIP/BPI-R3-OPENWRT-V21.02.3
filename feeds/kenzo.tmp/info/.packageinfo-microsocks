@@ -1,0 +1,25 @@
+Source-Makefile: feeds/kenzo/microsocks/Makefile
+
+Package: microsocks
+Submenu: Web Servers/Proxies
+Version: 1.0.3-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: Tiny, portable SOCKS5 server
+Maintainer: lean
+Source: microsocks-1.0.3.tar.gz
+License: MIT
+LicenseFiles: COPYING
+Type: ipkg
+Description:   A SOCKS5 service that you can run on your remote boxes to tunnel connections
+  through them, if for some reason SSH doesn't cut it for you.
+https://github.com/rofl0r/microsocks
+lean
+@@
+
+

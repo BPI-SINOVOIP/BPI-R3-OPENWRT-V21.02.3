@@ -1,0 +1,21 @@
+Source-Makefile: feeds/kenzo/luci-app-advanced/Makefile
+
+Package: luci-app-advanced
+Submenu: 3. Applications
+Version: 1.20-20220218
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for advanced and filebrowser
+Maintainer: 
+Source: 
+Type: ipkg
+Description: LuCI Support for advanced and filebrowser
+
+@@
+
+

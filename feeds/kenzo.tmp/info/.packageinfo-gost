@@ -1,0 +1,23 @@
+Source-Makefile: feeds/kenzo/gost/Makefile
+Build-Depends: golang/host
+
+Package: gost
+Version: 2.11.2-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: GO Simple Tunnel
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: gost-2.11.2.tar.gz
+License: MIT
+Type: ipkg
+Description: GO Simple Tunnel
+https://github.com/ginuerzh/gost
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+

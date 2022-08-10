@@ -1,0 +1,22 @@
+Source-Makefile: feeds/kenzo/aliyundrive-webdav/Makefile
+
+Package: aliyundrive-webdav
+Version: 1.6.1-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: multimedia
+Category: Multimedia
+Repository: base
+Title: WebDAV server for AliyunDrive
+Maintainer: messense <messense@icloud.com>
+Source: aliyundrive-webdav-v1.6.1.-unknown-linux-musl.tar.gz
+License: MIT
+Type: ipkg
+Description:   WebDAV server for AliyunDrive.
+https://github.com/messense/aliyundrive-webdav
+messense <messense@icloud.com>
+@@
+
+

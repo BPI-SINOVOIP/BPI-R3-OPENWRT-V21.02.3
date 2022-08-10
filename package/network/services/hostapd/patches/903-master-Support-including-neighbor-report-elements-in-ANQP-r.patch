@@ -1,0 +1,95 @@
+From adacd810f97a89472f26b454805cd67d0e6f5d31 Mon Sep 17 00:00:00 2001
+From: "howard.hsu" <howard-yh.hsu@mediatek.com>
+Date: Wed, 19 Jan 2022 19:25:05 +0800
+Subject: [PATCH 2/9] Support including neighbor report elements in ANQP
+ response
+
+---
+ src/ap/gas_serv.c | 29 +++++++++++++++++++++++++++++
+ src/ap/gas_serv.h |  2 ++
+ 2 files changed, 31 insertions(+)
+
+diff --git a/src/ap/gas_serv.c b/src/ap/gas_serv.c
+index 90f1577..5845ff8 100644
+--- a/src/ap/gas_serv.c
++++ b/src/ap/gas_serv.c
+@@ -19,6 +19,7 @@
+ #include "dpp_hostapd.h"
+ #include "sta_info.h"
+ #include "gas_serv.h"
++#include "neighbor_db.h"
+ 
+ 
+ #ifdef CONFIG_DPP
+@@ -369,6 +370,24 @@ static void anqp_add_network_auth_type(struct hostapd_data *hapd,
+ 	}
+ }
+ 
++static void anqp_add_neighbor_report(struct hostapd_data *hapd,
++				       struct wpabuf *buf)
++{
++	struct hostapd_neighbor_entry *nr;
++	u8 *len_pos = gas_anqp_add_element(buf, ANQP_NEIGHBOR_REPORT);
++	if (dl_list_empty(&hapd->nr_db)) {
++		wpabuf_put_le16(buf, 0);
++	}
++	else {
++		dl_list_for_each(nr, &hapd->nr_db, struct hostapd_neighbor_entry, list ) {
++			wpabuf_put_u8(buf, WLAN_EID_NEIGHBOR_REPORT);
++			wpabuf_put_u8(buf, wpabuf_len(nr->nr));
++			wpabuf_put_buf(buf, nr->nr);
++		}
++	}
++	gas_anqp_set_element_len(buf, len_pos);
++}
++
+ 
+ static void anqp_add_roaming_consortium(struct hostapd_data *hapd,
+ 					struct wpabuf *buf)
+@@ -986,6 +1005,9 @@ gas_serv_build_gas_resp_payload(struct hostapd_data *hapd,
+ 		len += 1000;
+ 	if (request & ANQP_REQ_ICON_REQUEST)
+ 		len += 65536;
++    if (request & ANQP_REQ_NEIGHBOR_REPORT) {
++        len += (40 * hostapd_neighbor_count(hapd));
++    }
+ #ifdef CONFIG_FILS
+ 	if (request & ANQP_FILS_REALM_INFO)
+ 		len += 2 * dl_list_len(&hapd->conf->fils_realms);
+@@ -1028,6 +1050,8 @@ gas_serv_build_gas_resp_payload(struct hostapd_data *hapd,
+ 		anqp_add_elem(hapd, buf, ANQP_TDLS_CAPABILITY);
+ 	if (request & ANQP_REQ_EMERGENCY_NAI)
+ 		anqp_add_elem(hapd, buf, ANQP_EMERGENCY_NAI);
++	if (request & ANQP_REQ_NEIGHBOR_REPORT)
++		anqp_add_neighbor_report(hapd, buf);
+ 
+ 	for (i = 0; i < num_extra_req; i++) {
+ #ifdef CONFIG_FILS
+@@ -1172,6 +1196,11 @@ static void rx_anqp_query_list_id(struct hostapd_data *hapd, u16 info_id,
+ 			     "Emergency NAI",
+ 			     get_anqp_elem(hapd, info_id) != NULL, qi);
+ 		break;
++	case ANQP_NEIGHBOR_REPORT:
++		set_anqp_req(ANQP_REQ_NEIGHBOR_REPORT,
++			     "Neighbor Report",
++			     get_anqp_elem(hapd, info_id) != NULL, qi);
++		break;
+ 	default:
+ #ifdef CONFIG_FILS
+ 		if (info_id == ANQP_FILS_REALM_INFO &&
+diff --git a/src/ap/gas_serv.h b/src/ap/gas_serv.h
+index 1528af4..d0241f2 100644
+--- a/src/ap/gas_serv.h
++++ b/src/ap/gas_serv.h
+@@ -40,6 +40,8 @@
+ 	(1 << (ANQP_TDLS_CAPABILITY - ANQP_QUERY_LIST))
+ #define ANQP_REQ_EMERGENCY_NAI \
+ 	(1 << (ANQP_EMERGENCY_NAI - ANQP_QUERY_LIST))
++#define ANQP_REQ_NEIGHBOR_REPORT \
++	(1 << (ANQP_NEIGHBOR_REPORT - ANQP_QUERY_LIST))
+ /*
+  * First 15 Hotspot 2.0 vendor specific ANQP-elements can be included in the
+  * optimized bitmap.
+-- 
+2.18.0
+

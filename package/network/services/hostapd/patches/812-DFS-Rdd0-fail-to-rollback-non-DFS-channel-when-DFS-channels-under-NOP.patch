@@ -1,0 +1,44 @@
+diff --git a/src/ap/dfs.c b/src/ap/dfs.c
+index 55b7188..6af0ef2 100644
+--- a/src/ap/dfs.c
++++ b/src/ap/dfs.c
+@@ -1048,7 +1048,7 @@ static int hostapd_dfs_request_channel_switch(struct hostapd_iface *iface,
+ }
+ 
+ 
+-static void hostpad_dfs_update_background_chain(struct hostapd_iface *iface)
++static int hostpad_dfs_update_background_chain(struct hostapd_iface *iface)
+ {
+ 	int sec = 0;
+ 	enum dfs_channel_type channel_type = DFS_NO_CAC_YET;
+@@ -1084,7 +1084,7 @@ static void hostpad_dfs_update_background_chain(struct hostapd_iface *iface)
+ 				  oper_centr_freq_seg1_idx, true)) {
+ 		wpa_printf(MSG_ERROR, "DFS failed to start CAC offchannel");
+ 		iface->radar_background.channel = -1;
+-		return;
++		return -1;
+ 	}
+ 
+ 	iface->radar_background.channel = channel->chan;
+@@ -1096,6 +1096,8 @@ static void hostpad_dfs_update_background_chain(struct hostapd_iface *iface)
+ 	wpa_printf(MSG_ERROR,
+ 		   "%s: setting background chain to chan %d (%d MHz)",
+ 		   __func__, channel->chan, channel->freq);
++
++	return 0;
+ }
+ 
+ 
+@@ -1320,8 +1322,7 @@ hostapd_dfs_background_start_channel_switch(struct hostapd_iface *iface,
+ 		 * Just select a new random channel according to the
+ 		 * regulations for monitoring.
+ 		 */
+-		hostpad_dfs_update_background_chain(iface);
+-		return 0;
++		return hostpad_dfs_update_background_chain(iface);
+ 	}
+ 
+ 	/*
+-- 
+2.29.2
+

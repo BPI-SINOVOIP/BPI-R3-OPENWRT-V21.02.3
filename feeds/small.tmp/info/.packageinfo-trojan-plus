@@ -1,0 +1,23 @@
+Source-Makefile: feeds/small/trojan-plus/Makefile
+Build-Depends: openssl
+
+Package: trojan-plus
+Version: 10.0.3-2
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libstdcpp +libopenssl +boost +boost-system +boost-program_options
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: An unidentifiable mechanism that helps you bypass GFW. It's compatible with original trojan with experimental features.
+Maintainer: Trojan-Plus-Group
+Source: trojan-plus-10.0.3.tar.xz
+License: GPL-3.0
+Type: ipkg
+Description: An unidentifiable mechanism that helps you bypass GFW. It's compatible with original trojan with experimental features.
+https://github.com/Trojan-Plus-Group/trojan-plus
+Trojan-Plus-Group
+@@
+
+

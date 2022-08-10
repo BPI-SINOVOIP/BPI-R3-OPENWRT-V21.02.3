@@ -1,0 +1,63 @@
+From cb31775e39eaa2b8a0bd36f5e195ac8bff967535 Mon Sep 17 00:00:00 2001
+From: "howard.hsu" <howard-yh.hsu@mediatek.com>
+Date: Wed, 19 Jan 2022 21:15:07 +0800
+Subject: [PATCH 6/9] Add set_send_disassoc_frame_timer() to send disassociate
+ frame
+
+Function set_disassoc_timer() may fail if key was deleted first. This new
+function will not ask to delete key as set_disassoc_timer() did.
+---
+ src/ap/wnm_ap.c | 30 +++++++++++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
+
+diff --git a/src/ap/wnm_ap.c b/src/ap/wnm_ap.c
+index 6eac3ac..fad132c 100644
+--- a/src/ap/wnm_ap.c
++++ b/src/ap/wnm_ap.c
+@@ -767,6 +767,34 @@ static void set_disassoc_timer(struct hostapd_data *hapd, struct sta_info *sta,
+ }
+ 
+ 
++static void set_send_disassoc_frame_timer(struct hostapd_data *hapd, struct sta_info *sta,
++			       int disassoc_timer)
++{
++	int timeout, beacon_int;
++
++	/*
++	 * Prevent STA from reconnecting using cached PMKSA to force
++	 * full authentication with the authentication server (which may
++	 * decide to reject the connection),
++	 */
++	wpa_auth_pmksa_remove(hapd->wpa_auth, sta->addr);
++
++	beacon_int = hapd->iconf->beacon_int;
++	if (beacon_int < 1)
++		beacon_int = 100; /* best guess */
++	/* Calculate timeout in ms based on beacon_int in TU */
++	timeout = disassoc_timer * beacon_int * 128 / 125;
++	wpa_printf(MSG_DEBUG, "Disassociation timer for " MACSTR
++		   " set to %d ms", MAC2STR(sta->addr), timeout);
++
++	u16 reason = WLAN_REASON_PREV_AUTH_NOT_VALID;
++
++	hostapd_drv_sta_disassoc(hapd, sta->addr, reason);
++	if (sta)
++		ap_sta_disassociate(hapd, sta, reason);
++}
++
++
+ void bss_termination_disable_iface(void *eloop_ctx, void *timeout_ctx)
+ {
+ 	struct hostapd_data *hapd = eloop_ctx;
+@@ -909,7 +937,7 @@ int wnm_send_bss_tm_req(struct hostapd_data *hapd, struct sta_info *sta,
+ 	hapd->openwrt_stats.wnm.bss_transition_request_tx++;
+ 	if (disassoc_timer) {
+ 		/* send disassociation frame after time-out */
+-		set_disassoc_timer(hapd, sta, disassoc_timer);
++		set_send_disassoc_frame_timer(hapd, sta, disassoc_timer);
+ 	}
+ 
+ 	return 0;
+-- 
+2.18.0
+

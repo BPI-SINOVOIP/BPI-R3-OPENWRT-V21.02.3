@@ -1,0 +1,50 @@
+Source-Makefile: feeds/kenzo/naiveproxy/Makefile
+Build-Depends: ninja/host
+
+Package: naiveproxy
+Submenu: Web Servers/Proxies
+Version: 103.0.5060.53-2-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @!(arc||armeb||mips||mips64||powerpc||TARGET_gemini) +libatomic
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: Make a fortune quietly
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: naiveproxy-103.0.5060.53-2.tar.gz
+License: BSD 3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   NaïveProxy uses Chrome's network stack to camouflage traffic with strong
+  censorship resistance and low detectability. Reusing Chrome's stack also
+  ensures best practices in performance and security.
+https://github.com/klzgrad/naiveproxy
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+Package: libcronet
+Version: 103.0.5060.53-2-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @!(arc||armeb||mips||mips64||powerpc||TARGET_gemini) +libatomic
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: The Chromium network stack library
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: naiveproxy-103.0.5060.53-2.tar.gz
+License: BSD 3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description:   Cronet is the Chromium network stack made available to Android apps as a library.
+
+  Cronet takes advantage of multiple technologies that reduce the latency and
+  increase the throughput of the network requests that your app needs to work.
+https://github.com/klzgrad/naiveproxy
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+

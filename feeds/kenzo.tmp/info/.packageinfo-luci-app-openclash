@@ -1,0 +1,25 @@
+Source-Makefile: feeds/kenzo/luci-app-openclash/Makefile
+
+Package: luci-app-openclash
+Submenu: 3. Applications
+Version: 0.45.33-beta
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +iptables +dnsmasq-full +coreutils +coreutils-nohup +bash +curl +ca-certificates +ipset +ip-full +iptables-mod-tproxy +iptables-mod-extra +libcap +libcap-bin +ruby +ruby-yaml +kmod-tun
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: opt
+Category: LuCI
+Repository: base
+Title: LuCI support for clash
+Maintainer: vernesong
+Source: 
+Type: ipkg
+Description:     A LuCI support for clash
+vernesong
+@@
+Config:
+	config PACKAGE_kmod-inet-diag
+	default y if PACKAGE_luci-app-openclash
+@@
+
+

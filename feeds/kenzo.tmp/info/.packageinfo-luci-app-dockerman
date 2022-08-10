@@ -1,0 +1,64 @@
+Source-Makefile: feeds/kenzo/luci-app-dockerman/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-dockerman
+Submenu: 3. Applications
+Version: v0.5.25
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||x86_64) +luci-compat +luci-lib-docker +luci-lib-ip +docker +dockerd +ttyd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for docker
+Maintainer: OpenWrt LuCI community
+Source: 
+License: AGPL-3.0
+Type: ipkg
+Description: LuCI Support for docker
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-dockerman-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-dockerman
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-dockerman - zh-cn translation
+Maintainer: lisaac <lisaac.cn@gmail.com> Florian Eckert <fe@dev.tdt.de>
+Source: 
+License: AGPL-3.0
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-dockerman - 简体中文 (Chinese Simplified)
+lisaac <lisaac.cn@gmail.com> Florian Eckert <fe@dev.tdt.de>
+@@
+
+Package: luci-i18n-dockerman-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-dockerman
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-dockerman - zh-cn translation
+Maintainer: lisaac <lisaac.cn@gmail.com> Florian Eckert <fe@dev.tdt.de>
+Source: 
+License: AGPL-3.0
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-dockerman - 简体中文 (Chinese Simplified)
+lisaac <lisaac.cn@gmail.com> Florian Eckert <fe@dev.tdt.de>
+@@
+
+

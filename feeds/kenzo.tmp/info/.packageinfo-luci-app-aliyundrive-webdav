@@ -1,0 +1,64 @@
+Source-Makefile: feeds/kenzo/luci-app-aliyundrive-webdav/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-aliyundrive-webdav
+Submenu: 3. Applications
+Version: 1.6.1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +aliyundrive-webdav
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for aliyundrive-webdav
+Maintainer: OpenWrt LuCI community
+Source: 
+License: MIT
+Type: ipkg
+Description: LuCI Support for aliyundrive-webdav
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+Package: luci-i18n-aliyundrive-webdav-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: 1.6.1-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-aliyundrive-webdav
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-aliyundrive-webdav - zh-cn translation
+Maintainer: messense <messense@icloud.com>
+Source: 
+License: MIT
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-aliyundrive-webdav - 简体中文 (Chinese Simplified)
+messense <messense@icloud.com>
+@@
+
+Package: luci-i18n-aliyundrive-webdav-zh-cn
+Default: LUCI_LANG_zh_Hans||(ALL&&m)
+Version: 1.6.1-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread luci-app-aliyundrive-webdav
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: luci-app-aliyundrive-webdav - zh-cn translation
+Maintainer: messense <messense@icloud.com>
+Source: 
+License: MIT
+Type: ipkg
+Hidden: 1
+Description:     Translation for luci-app-aliyundrive-webdav - 简体中文 (Chinese Simplified)
+messense <messense@icloud.com>
+@@
+
+

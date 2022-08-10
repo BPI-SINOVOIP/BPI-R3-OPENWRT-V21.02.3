@@ -1,0 +1,26 @@
+Source-Makefile: feeds/packages/libs/glib2/Makefile
+Build-Depends: meson/host gettext-full libiconv/host !BUILD_NLS:libiconv !BUILD_NLS:gettext ninja/host
+Build-Depends/host: meson/host gettext-full/host libiconv/host libffi/host ninja/host
+Build-Types: host
+
+Package: glib2
+Version: 2.66.4-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +BUILD_NLS:libiconv-full +BUILD_NLS:libintl-full +zlib +libpthread +libffi +libattr
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: glib 2.0
+Maintainer: Peter Wagner <tripolar@gmx.at>
+Source: glib-2.66.4.tar.xz
+License: LGPL-2.1-or-later
+LicenseFiles: COPYING
+Type: ipkg
+Description:   The GLib library of C routines
+http://www.gtk.org/
+Peter Wagner <tripolar@gmx.at>
+@@
+
+

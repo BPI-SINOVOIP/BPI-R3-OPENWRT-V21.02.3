@@ -1,0 +1,24 @@
+Source-Makefile: feeds/small/dns2tcp/Makefile
+
+Package: dns2tcp
+Submenu: IP Addresses and Names
+Version: 1.1.0-0
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: utility to convert dns query from udp to tcp
+Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+Source: dns2tcp-1.1.0.tar.xz
+License: AGPL-3.0-only
+LicenseFiles: LICENSE
+Type: ipkg
+Description: utility to convert dns query from udp to tcp
+https://github.com/zfl9/dns2tcp
+Tianling Shen <cnsztl@immortalwrt.org>
+@@
+
+
